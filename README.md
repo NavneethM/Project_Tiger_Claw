@@ -1,3 +1,3 @@
 # Project-TIGER-CLAW
 Internal project to host study material for certain certifications
-https://element840168.github.io/Project-TIGER-CLAW/
+https://navneethm.github.io/Project_Tiger_Claw/
