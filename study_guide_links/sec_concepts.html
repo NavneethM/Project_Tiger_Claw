@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Concepts</title>
+
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/sec_concepts.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_sec_concepts.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <a href="../Resources/page_STUDY_GUIDE.html"
+        ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+      /></a>
+    </div>
+
+    <div class = "sections">
+      <a class="sec1" href="#section1">Kerberos</a> <br>
+      <a class="sec2" href="#section2">Data Integrity</a> <br> 
+      <a class="sec3" href="#section3">Cryptography</a> <br>
+      <a class="sec4" href="#section4">Types of Malware</a> <br>
+    </div>
+
+    <div class = "main_page">
+      <p>
+        <h2>Security Topics</h2>
+
+
+        <h3 id="section1">Kerberos</h3> <br>
+        <ul>
+          <li>    Authentication server that gives “Ticket Granting Tickets” (TGTs) </li> <br>
+          <li>    Works on the basis of tickets to allow nodes communicating over a non-secure network to prove their identity to one another in a secure manner. </li> <br>
+          <li>    Primarily client-server model; provides mutual authentication. </li> <br>
+          <li>    Uses UDP port 88 by default </li> <br>
+          <li>    Windows first started using this as a default authentication method in Windows 2000. </li> <br>
+          <li>    Many Unix-like operating systems include software for Kerberos authentication of users/services. </li> <br>
+          <li>    Additional research https://searchsecurity.techtarget.com/definition/Kerberos </li>
+        </ul>
+
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <h3 id="section2">Data Integrity</h3> <br>
+        <ul>
+          <li>    <h4>Unix File Protection</h4> <br>
+            <strong>Tripwire:</strong> Security and data integrity tool for monitoring and alerting on specific file changes on a range of systems. </li> <br> <br>
+          <li>    <h4>Windows File Protection</h4> <br>
+            <strong>Data Execution Prevention (DEP): </strong>System level memory protection that prevents the execution of data. </li>
+        </ul>
+
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <h3 id="section3">Cryptography</h3> <br>
+          <ul><li><h4>PGP – Pretty Good Privacy  </h4><br></li>
+            An encryption program that provides cryptographic privacy and authentication for data communication. 
+            Used for signing, encrypting, and decrypting texts, emails, files, directories, and whole disk partitions, as well as to increase security for email communications. 
+            Follows OpenPGP standard. 
+          </ul>    
+
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+          <h3 id="section4">Types of Malware</h3> <br>
+        <ul>
+          <li>    <strong>Worm: </strong>Targets vulnerabilities in operating systems to install themselves into networks. Often used to launch DDoS attacks, steal data, etc. 
+            Can copy itself and spread through a network by exploiting security vulnerabilities. 
+         </li> <br>
+          <li>    <strong>Trojan:</strong> Disguises itself as legitimate, desirable code or software. Once downloaded, a Trojan can take control of victims’ systems for malicious purposes. 
+            May be embedded in attachments in emails, or in games, apps, software patches, modified firmware, etc. </li> <br>
+          <li>    <strong>Virus: </strong> Piece of code that inserts itself into an application and executes when the app is run. </li> <br>
+          <li>    <strong>Rootkit: </strong> Software that gives malicious actors remote control of a victim’s computer with full admin privileges. 
+            May be injected into applications, kernels, hypervisors, or firmware. 
+         </li>
+        </ul>
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+      </p>
+  </body>
+</html>

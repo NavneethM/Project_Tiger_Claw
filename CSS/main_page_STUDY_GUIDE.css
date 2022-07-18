@@ -1,0 +1,21 @@
+
+
+.tiger2 {
+  width: 500px;
+  float: left;
+  object-fit: cover;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+h1 {
+  text-align: left;
+  font-size: 60px;
+  margin-left: 65%;
+}
+
+.modules {
+  text-align: left;
+  font-size: 45px;
+  margin-left: 65%;
+}

@@ -1,0 +1,47 @@
+h2{
+    text-align: left;
+    font-size: 80px;
+    
+}
+h3{
+    text-align: left;
+    font-size: 40px;
+    border-bottom: 5px solid black;
+    margin-bottom: 10px;
+
+}
+h4{
+   text-align: left;
+   font-size: 30px; 
+   text-decoration: underline;
+   margin-bottom: 1px;  
+   margin-top: 10px;
+}
+h5{
+    text-align: left;
+    font-size: 20px; 
+    text-indent: 15px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#sausage_pizza{
+    text-align: left;
+    font-size: 20px;
+    margin: 1px;
+}
+
+ul{
+    margin-top: 5px;
+    text-indent:5px;
+
+}
+
+table{
+    border: solid 2px black;
+
+}
+td{
+    border: solid 2px black;
+}
+

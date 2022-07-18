@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computer Architecture</title>
+
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/computer_arc.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_computer_ark.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <a href="../Resources/page_STUDY_GUIDE.html"
+        ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+      /></a>
+    </div>
+
+    <div class = "sections">
+      <a href="#section1">RISC, CISC, SPARC</a> <br>
+      <a href="#section2">x84 vs x64 bit</a> <br>
+      <a href="#section3">x86 Architecture</a> <br>
+      <a href="#section4">Software/Hardware/Firmware</a> <br>
+      <a href="#section5">HDDs/SSDs</a> <br>
+      <a href="#section6">Storage and Memory</a> <br>
+      <a href="#section7">Drivers</a> <br>
+    </div>
+
+    <div class = "main_page">
+      <p>
+       <h2>Computer Architecture</h2>
+       <h3 id="section1">RISC, CISC, SPARC architectures</h3> <br>
+       <ul>
+         <li>    <strong>Reduced Instruction Set Computing (RISC): </strong> 
+          Single-clock, reduced instruction only; register to register: “LOAD” and “STORE” are independent instructions; low cycles per second, large code sizes; spends more transistors on memory registers. 
+          Small, highly optimized set of instructions, with a large number of registers and a highly regular instruction pipeline. 
+          Allows for a low number of clock cycles per instruction. 
+          Decodes starting at the lowest-addressed byte of the instruction (invariant endianness)</li> <br>
+         <li>    <strong>Complex Instruction Set Computing (CISC): </strong> 
+          Includes multi-clock complex instructions, memory to memory “LOAD” and “STORE” incorporated in instructions; small codes sizes, high cycles per second; transistors used for storing complex instructions 
+          Special instructions, as well as instructions that take more than one clock cycle. 
+       </li> <br>
+         <li>    <strong>Scalable Processor Architecture (SPARC): </strong>
+          32bit and 64bit open microprocessor architecture from Sun Microsystems. Based on RISC.  
+          Reduced instruction set computing (RISC) originally developed by Sun Microsystems. 
+          Purely ‘Big-endian’ </li>
+       </ul>
+
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+
+       <h3 id="section2">x86 vs x64 bit</h3> <br>
+       <ul>
+            <h5>x86</h5> No more than 4GB of RAM allowed to be installed </li> <br> <br>
+            <h5>x64</h5>More than 4GB of RAM can be installed </li>
+       </ul>
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+       <h3 id="section3">x86 Architecture</h3> <br>
+
+       <h4>Traits/examples of x86 Architecture </h4> <br>
+          
+         <ul>
+           <li>    Based on CISC computing. </li> <br>
+           <li>    No more than 4 GB of RAM allowed in x86 systems. (more than 4 GB can be installed in 64 bit) </li> <br>
+           <li>    Intel, AMD </li> <br>
+           <li>    Purely ‘Little-endian’ </li> <br>
+           <li>    <strong>Note: </strong> ‘Endianness’ (big/little) refers to the order or sequence of bytes of a word of digital data in computer memory. A big-endian system stores the most significant byte (MSB) of a word at the smallest memory address and the least significant byte (LSB) at the largest memory address.     ~A little-endian system stores the LSB at the smallest address. 
+
+            (Big/M/Small & Little/L/Small)? </li> <br>
+         </ul>
+         <img src="../images/endian.png" alt="">
+         <br>
+
+         <a class="back_to_categories" href="#top">Back to Categories</a> 
+       
+         <h3 id="section4">Software/Hardware/Firmware</h3> <br>
+       <ul>
+         <li>   <strong>Software:</strong> The programs and other operating information used by a computer. </li> <br>
+         <li>   <strong> Hardware:</strong> Collection of physical parts of a computer system </li> <br>
+         <li>   <strong> Firmware:</strong> Permanent software programmed into a read-only memory. </li> 
+       </ul>
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+       <h3 id="section5">HDDs/SSDs</h3> <br>
+       <ul>
+         <li>    <strong>Partitions:</strong> Section of the drive that is separated from other segments of the drive. </li> <br>
+         <li>    <strong> Sectors:</strong> Subdivision of a track on a magnetic disk or optical disc. Each sector stores a fixed amount of user-accessible data. The sector is the minimum storage unit of a hard drive. (512B) </li> <br>
+         <li>    <strong> Platters:</strong> One of the disks in a hard disk drive. Each platter provides a top and bottom recording surface. There may be only one or several platters in a drive with each platter having its own pair of read/write heads. </li> <br>
+         <li>    <strong> Nodes:</strong> Provide important information on files such as user and group ownership, access mode (read, write, execute permissions) and type. 
+
+          Data structure in Unix-like file system that describes a file-system object such as a file or directory. (Think: metadata) 
+      
+          Stores information about files/directories such as file size, ownership, access mode (permissions ‘rwx’), and file type. </li> <br>
+        <li><strong>Logical:</strong> Refers to the virtual space that is allocated within the disk itself.  </li> <br>
+        <li><strong>Physical:</strong> Refers to the physical hardware within the system. </li>
+       </ul>
+
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+
+       <h3 id="section6">Storage and Memory</h3> <br>
+       <h4>Order of Volatility</h4> <br>
+       <ul>
+         <li>Registers, Cache </li> <br>
+         <li>Routing Table, ARP cache, Process Table, Kernel Statistics, Memory </li> <br>
+         <li>Temporary File systems </li> <br>
+         <li>Disk</li> <br>
+         <li>Remote Logging/Monitoring Data (relevant to system)</li> <br>
+         <li>Physical Configuration, Network Topology</li> <br>
+         <li>Archival Media</li>
+       </ul>
+       <h4>Storage</h4> <br>
+       <ul>
+         <li><strong>Primary Storage</strong> – Often referred to simply as Memory. Only type of memory directly accessible to the CPU. (RAM). </li> <br>
+         <li><strong>Secondary Storage</strong> – Differs from Primary Storage in that it’s not directly accessible by the CPU.  
+          ‘Non-volatile’ memory storage; basically any storage that is not Primary is Secondary. 
+          Hard-disk Drives (HDDs), Solid-state Drives (SSDs), and any kind of external storage technologies (USB drives, floppy disks, magnetic tape, etc) 
+          Formatted according to file system format, providing the abstraction necessary to organize data into files and directories, as well as metadata (file owner, access time, permissions, etc) </li> <br>
+         <li><strong>Physical Storage</strong> – Includes HDDs, SSDs, Magnetic Tape, etc. 
+          HDDs: (Hard-disk Drive, an electro-mechanical data storage device that utilizes magnetic storage and one or more rigid rapidly rotating platters coated with magnetic material.) 
+          Made up of Platters, which are divided into Sectors, and Tracks. Data is stored on the surface of the platters in sectors and tracks using a form of magnetic charges. 
+          Data is read when the magnetic heads on the actuator arms move over the platter surface, the heads will detect changes in magnetization and read/write them as binary data bits. 
+          Sectors – subdivision of a track on a magnetic disk or optical disk. Each sector stores a fixed amount of user-accessible data. 
+          Platters – Disks in a hard drive. Each platter provides a top and bottom recording surface. (one or several platters in a drive with each having its own pair of read/write heads.)  </li> <br>
+          <img src="../images/storage.png" alt=""> <br><br>
+          <li><strong>Logical Storage</strong> – A virtual space/device (does not exist as a physical entity in its own right). Includes partitions, logical disk, logical volume, virtual disk, etc. 
+          Partition – A logical section of a physical storage device, allows you to make data smaller than a platter. 
+          Treated like a separate logical volume, making it function similarly to a separate physical storage device. 
+          Any partition may be mounted except those marked as startup disks. </li> <br>
+         <li><strong>Memory Paging</strong> – When RAM is full, these will act as a form of virtual memory 
+          Utilizes least-used chunks of secondary storage to increase the capacity of primary storage, albeit at the cost of performance. (More instruction count, less speed.) 
+          Windows: Page File (pagefile.sys) 
+          Unix: ‘Swap’ – the term swap is applied to any form of memory that is dedicated to swapping, such as partitions, and even harddrives. (swap partition/swap drive, respectively) </li>
+       </ul>
+
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+
+       <h3 id="section7">Drivers</h3>
+       <ul>
+         <li>Device Drivers</li>
+            <ul>
+              <li>Computer programs that operate or control a particular type of device that is attached to a system. </li>
+              <li>Provides a software interface to hardware devices, enabling operating systems and other computer programs to access hardware functions.</li>
+            </ul>
+         <li>Network Drivers</li>
+           <ul>
+             <li>Device driver that enables a network device to communicate between the computer and operating system, and with other network computers and devices. </li></li>
+            </ul>
+             
+       </ul>
+
+       <a class="back_to_categories" href="#top">Back to Categories</a> 
+
+      </p>
+    </div>
+  </body>
+</html>

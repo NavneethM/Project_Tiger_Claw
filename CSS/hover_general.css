@@ -1,0 +1,11 @@
+.back_icon:hover {
+  opacity: 0.8;
+  width: 60px;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.back_to_categories:hover {
+  color: blue;
+}

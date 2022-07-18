@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Networking</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/networking.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_networking.css" rel="stylesheet" type="text/css" />
+<!--new css file created to format these study guide modules-->
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <a href="../Resources/page_STUDY_GUIDE.html"
+        ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+      /></a>
+    </div>
+    <div>
+      <a href="#section1">IP Addressing</a> <br>
+      <a href="#section2">OSI Model</a> <br> 
+      <a href="#section3">Network Devices</a> <br>
+      <a href="#section4">Network Topologies</a> <br>
+      <a href="#section5">Ports and Protocols</a> <br>
+      <a href="#section6">Routing Protocols</a> <br> 
+      <a href="#section7">TCP/UDP/Ethernet Headers</a> <br>
+      <a href="#section8">Network Miscellaneous</a> <br>
+    </div>
+    <div>
+      <p>
+        <h2>Networking</h2>
+        <h3 id="section1">IP Addressing</h3>
+        <h4>IPv4 Address Classes</h4>
+        <!--added missing table from word doc, this just the information, the CSS will add borders-->
+        <table id="IPv4_Address_Classes_Table">  <!--the id is not necessary but just in case other tables need other settings-->        
+        <!--if a table needs a header, you can add the following 
+          <thead>
+            <tr></tr>
+          </thead> -->
+          <tbody>
+            <!--<tr> creates a row and every <td> inside of it adds a column-->
+            <tr>
+              <td>
+                <strong>Class A</strong>
+              </td>
+              <td>
+                <strong>First Octet:</strong> 0-127<br>
+                <strong>Binary:</strong> 0XXXXXXX<br>
+                <strong>Default Mask:</strong> 255.0.0.0<br>
+                <strong>CIDR:</strong> 8<br>
+              </td>              
+            </tr>
+            <tr>
+              <td>
+                <strong>Class B</strong>
+              </td>
+              <td>
+                <strong>First Octet:</strong> 128-191<br>
+                <strong>Binary:</strong> 10XXXXXX<br>
+                <strong>Default Mask:</strong> 255.255.0.0<br>
+                <strong>CIDR:</strong> 16<br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Class C</strong>
+              </td>
+              <td>
+                <strong>First Octet:</strong> 192-223<br>
+                <strong>Binary:</strong> 110XXXXX<br>
+                <strong>Default Mask:</strong> 255.255.255.0<br>
+                <strong>CIDR:</strong> 32<br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Class D</strong>
+               </td>
+              <td>
+                <strong>First Octet:</strong> 224-239<br>
+                <strong>Binary:</strong> 1110XXXX<br>
+                <strong>***Multicast</strong> Addressing<br>               
+              </td>
+            </tr>
+            <tr>            
+              <td>
+                <strong>Class E</strong>
+              </td>
+              <td>
+                <strong>First Octet:</strong> 240-255<br>
+                <strong>Binary:</strong> 1111XXXX<br>
+                <strong>***Experimental</strong><br>                
+              </td>
+            </tr>            
+          </tbody>
+        </table>
+
+        <h4>IPv4 Addresses</h4>
+        <ul>
+          <li>32 bits per address (4 octets of 8 bits each)</li>
+          
+          <li>Private vs Public IP addresses, PAT vs NAT.
+            <ul>
+              <li>PAT - Private to Same Public IP address, different port.</li>
+              <li>NAT - Private to Different Public IP address, same port.</li>
+            </ul>
+          </li>
+
+          <li>Private IP Ranges:
+            <ul>
+              <li>10.0.0.0/8</li>
+              <li>172.16.0.0/12</li>
+              <li>192.168.0.0/16</li>
+              <li>APIPA: 169.254.0.0/16 (allows Windows machine to communicate over LAN without internet)
+                <ul>
+                  <li>APIPA, or Automatic Private IP Addressing is a DHCP fail-safe that protects a computer system from failure.</li>
+                  <li>Allows DHCP clients to obtain IP addresses even when DHCP servers are unavailable/non-functional.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li>Class IP addresses and typical cidr notation
+            <ul>
+              <li> Class A - 0 - 127 /1-8</li>
+              <li>Class B - 128 - 191 /9-16</li>            
+              <li>Class C - 192 - 223 /17-24 </li>
+              <li>Class D: 224-239/undefined (Multicast Addressing)</li>
+              <li>Class E: 240-255/undefined (Experimental)</li>
+            </ul>
+          </li>
+
+          <li>Loopback
+            <ul>
+              <li>127.0.0.0/8</li>
+              <li>127.0.0.1 is the common one</li>
+              <li>Use to test NIC's ability to send and recieve</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>IPv6</h4>
+        <ul>
+          <li>    8 groups of 4 (16 bits) hexadecimal digits, 128 bits long. </li>
+          <li>    :: is allowed when back to back sets of 0’s are present and can only be done once per address (0000:0000=::), other sets of 0’s are shrunk to a single 0 (:0000:=:0:) </li>
+        </ul>
+        <table id="IPv6_Address_Table">
+          <tr>
+            <td>Unspecified</td>
+            <td>::/128</td>
+          </tr>
+
+          <tr>
+            <td>Loopback</td>
+            <td>::1/128</td>
+          </tr>
+
+          <tr>
+            <td>Unique Local Address </td>
+            <td>FC00::/7</td>
+          </tr>
+
+          <tr>
+            <td>Link-local address </td>
+            <td>FE80::/10</td>
+          </tr>
+
+          <tr>
+            <td>Global unicast address </td>
+            <td>2000::/3</td>
+          </tr>
+
+          <tr>
+            <td>Multicast address </td>
+            <td>FF00::/8</td>
+          </tr>
+
+          <tr>
+            <td>Example of IPv4 in mixed IPv4/IPv6 environment </td>
+            <td>::0:192.168.100.1</td>
+          </tr>
+
+          <tr>
+            <td>Example of 6to4 tunneling </td>
+            <td>2002::/16 (0010 0000 0000 0010)</td>
+          </tr>
+        </table>
+
+        <h4>IPv4 to IPv6 Methods</h4>
+        <table id="IPv4_to_IPv6_Methods">
+          <tr>
+            <td>Dual Stacking</td>
+            <td>
+              <ul>
+                <li>The process of loading both IPv4 and IPv6 on network nodes.</li>
+                <li>Allows a machine to utilize either protocol to communicate.</li>
+                <li>Most modern computer systems have the capability to run both IPv4 and IPv6 at the same time.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Tunneling</td>
+            <td>
+              <ul>
+                <li>The process by which IPv6 packets are encapsulated within IPv4 packets:
+                  <ul>
+                    <li>6to4</li>
+                    <li>6in4</li>
+                    <li>Teredo</li>
+                    <li>ISATAP</li>
+                  </ul>
+                </li>
+              </ul>              
+            </td>
+          </tr>
+
+          <tr>
+            <td>Translation (Routers)</td>
+            <td>
+              <ul>
+                <li>The packet headers for proper communication</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        
+        <h4>Subnetting</h4>
+        <ul>
+          <li>    Most important to remember is how to get first/last/network/broadcast addresses </li>
+          <li>    https://subnetipv4.com/ </li>
+          <li>    https://subnettingpractice.com/ </li>
+          <li>    "7 Second Subnetting" by Professor Messer </li>
+        </ul>
+
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <!-- new section -->
+        <h3 id="section2">OSI Model</h3>
+        <ul>
+          <li>    Layer 7 (Data): Application – GUI (Explorer.exe) </li>
+          <li>    Layer 6 (Data): Presentation – Encryption/Decryption </li>
+          <li>    Layer 5 (Data): Session – Communication between two devices (computers and servers) </li>
+          <li>    Layer 4 (Segments): Transport – End-to-end Connections & Reliability (TCP/UDP) </li>
+          <li>    Layer 3 (Packets): Network – Router comms, packet forwarding, ARP (IP addresses) </li>
+          <li>    Layer 2 (Frames): Data Link – MAC & LLC, Switches (MAC addresses) </li>
+          <li>    Layer 1 (Bits): Physical – cables, media, signal, and binary transmission </li>
+        </ul>
+
+        <h4>OSI Model Descriptions</h4>
+        <ul>
+          <li>Allows different vendors, equipment, protocols, or rules to work together</li>
+        </ul>
+        <table id="OSI_Model_Decriptions">
+          <tr>
+            <td>Layer 7 – Application </td>
+            <td>
+              <ul>
+                <li>Interface between user’s application &  network</li>
+                <li>Protocol data unit (PDU): Data</li>
+                <li>Protocols: DNS, SMTP, HTTP, FTP, POP3, SNMP, Telnet</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 6 – Presentation </td>
+            <td>
+              <ul>
+                <li>Presents data at destination with same meaning at the source.</li>
+                <li>Data compression & restoration, encryption & decryption, ASCII conversion occur here.</li>
+                <li>PDU: Data</li>
+                <li>Protocols: MPEG, ASCH, SSL, TLS</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 5 – Session </td>
+            <td>
+              <ul>
+                <li>Set up, coordinate, and terminates conversation, exchange, and dialogue between devices across network.</li>
+                <li>Simplex, half duplex, full duplex</li>
+                <li>PDU: Data</li>
+                <li>Protocols: NetBIOS, SAP, sockets, PPTP, L2TP, L2F, RPC</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 4 – Transport </td>
+            <td>
+              <ul>
+                <li>Manages delivery between systems and hosts.</li>
+                <li>Data is broken into chunks.</li>
+                <li>Segment sequencing, error recovery, and flow control.</li>
+                <li>PDU: Segments</li>
+                <li>Protocols: TCP, UDP, SPX, NetBEUI/NBF</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 3 – Network </td>
+            <td>
+              <ul>
+                <li>Logical addressing and routing of messages to their proper destination.</li>
+                <li>PDU: Packets</li>
+                <li>Hardware: Router</li>
+                <li>Protocols: IP, ARP, ICMP, and IPSec</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 2 – Data Link </td>
+            <td>
+              <ul>
+                <li>Provides reliable method of transmitting data across communication link.</li>
+                <li>Physical addressing and frame data heading</li>
+                <li>Logical Link Control (LLC)</li>
+                <li>Media Access Control (MAC)</li>
+                <li>PDU: Frame</li>
+                <li>Hardware: Switch, Network Adapter, bridges</li>
+                <li>Protocols: PPP, ATM, Ethernet, 802.2 LLC, 802.11 (WLAN/WiFi), Token ring, Frame relay</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Layer 1 – Physical </td>
+            <td>
+              <ul>
+                <li>Communication where it takes place.</li>
+                <li>PDU: Bits</li>
+                <li>Hardware: Repeater, hubs, ethernet cable</li>
+              </ul>
+            </td>
+          </tr>
+        </table>  
+
+        <h4>OSI Model (EVEN MORE)</h4>
+        <p ID="sausage_pizza"><em><strong>“Please Do Not Throw Sausage Pizza Away”</strong></em></p>
+        
+            <ul>
+              <li>Layer 7 (Data): <br>
+                <strong>Application</strong> – Provides an interface between user’s application and the network. 
+                <ul>
+                  <li>Protocols: DNS, SMTP, HTTP, FTP, POP3, SNMP, Telnet </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 6 (Data): <br>
+                <strong>Presentation</strong> – Presents data at destination with same meaning at the source. 
+                <ul>
+                  <li>Data compression & restoration, encryption/decryption, ASCII conversion occur here. </li>
+                  <li>Protocols: MPEG, ASCH, SSL, TLS 
+                    <ul>
+                      <li>SSL – Secure Socket Layer 
+                        <ul>
+                          <li>Provides cryptographic security for the Application Layer. (Limited to number of applications it can secure) </li>
+                        </ul>
+                      </li>
+                      <li>TLS – Transport Layer Security 
+                        <ul>
+                          <li>Upgrade of SSL; no restriction on number of applications. </li>
+                          <li>Used in VoIP and VPNs. </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 5 (Data): <br>
+                <strong>Session</strong> – Sets up, coordinates, terminates conversations, exchanges, and dialogues between devices across the network. 
+                <ul>
+                  <li>Communication between two devices (computers – servers) </li>
+                  <li>Simplex, half duplex, full duplex.. </li>
+                  <li>Protocols: NetBIOS, SAP, Sockets, PPTP, L2TP, L2F, RPC </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 4 (Segments):<br>
+                <strong>Transport</strong> – Provides the functional and procedural means of transferring variable-length data sequences from a source to a destination host, while maintaining the quality of service functions. 
+                <ul>
+                  <li>End-to-end Connections & Reliability (TCP/UDP) </li>
+                  <li>Data is broken into chunks (segments) at this layer. (Segment sequencing, error recovery, and flow control) </li>
+                  <li>Protocols: TCP, UDP, SPX, NetBEUI/NBF </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 3 (Packets): <br>
+                <strong>Network</strong> – Provides the functional and procedural means of transferring packets from one node to another connected in different networks. 
+                <ul>
+                  <li>Router Communications, packet forwarding, ARP (IP addresses) </li>
+                  <li>If a message is too large to transmit between nodes, the network may implement message delivery by splitting the message into several fragments at one node, sending them independently, and reassembling the fragments at another node. </li>
+                  <li>Hardware: Routers </li>
+                  <li>Protocols: IP, ARP, ICMP, IPSec </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 2 (Frames): <br>
+                <strong>Data Link</strong> – Provides node-to-node transfer; a link between two directly connected nodes. Detects and possibly corrects errors that may occur in the physical layer. 
+                <ul>
+                  <li>MAC & LLC, Switches (MAC Addresses) 
+                    <ul>
+                      <li>Medium Access Control (MAC) layer – responsible for controlling how devices in a network gain access to a medium and permission to transmit data. </li>
+                      <li>Logical Link Control (LLC) layer – responsible for identifying and encapsulating network layer protocols, and controls error checking/frame synchronization. </li>
+                      <li>Point-to-Point Protocol (PPP) – data link layer that can operate over several different physical layers. </li>
+                    </ul>
+                  </li>
+                  <li>Hardware: Switches, Network Adapters, Bridges </li>
+                  <li>Protocols: PPP, ATM, Ethernet, 802.2 LLC, 802.11 WLAN/WiFi, Token Ring, Frame Relay </li>
+                </ul>
+              </li><br>
+
+              <li>Layer 1 (Bits): <br>
+                <strong>Physical</strong> – Responsible for the transmission and reception of unstructured raw data between a device and a physical transmission medium. Converts digital bits into electrical/radio/optical signals. 
+                <ul>
+                  <li>Cables, media, signal, binary transmission. </li>
+                  <li>Hardware: Repeaters, Hubs, Ethernet cables </li>
+                </ul>
+              </li><br>          
+            </ul>
+            <a class="back_to_categories" href="#top">Back to Categories</a>
+            <!-- new section -->
+        <h3 id="section3">Network Devices</h3>
+        <table>
+          <tr>
+            <td>Network Adapter (Network Interface Card [NIC]) </td>
+            <td>
+              <ul>
+                <li>Provides interface between computer and network medium.</li>
+                <li>Prepare, send, and control data flow.</li>
+                <li>Layer 2 – Data Link</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Repeaters</td>
+            <td>
+              <ul>
+                <li>Receive and regenerate signal.</li>
+                <li>Help with attenuation issue (degradation of signal over distance).</li>
+                <li>Layer 1 - Physical</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Hubs</td>
+            <td>
+              <ul>
+                <li>Multiport repeaters that receive digital signal, regenerate it, and then broadcast signal to all connected port.</li>
+                <li>Layer 1 - Physical</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Switches</td>
+            <td>
+              <ul>
+                <li>Send signal to specific port (unlike hubs) based on MAC addresses.</li>
+                <li>Layer 2 – Data Link</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Routers</td>
+            <td>
+              <ul>
+                <li>Interconnect LAN and WAN (Gateway)</li>
+                <li>Determines the next network to which an address is sent by scanning destination IP address and finding best path.</li>
+                <li>Traffic control and filter.</li>
+                <li>Layer 3 - Network</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <!-- new section -->
+        <h3 id="section4">Network Topologies</h3>
+        <ul>
+          <li>    Physical – Maps the actual, physical connections in a network, such as wires and cables, and the placement of various components such as switches. 
+            <ul>
+              <li>    Bus: 
+                <ul>
+                  <li>    Every device is connected to a solo main cable line. </li>
+                  <li>    Data is transmitted in a single route, from one point to another. </li>
+                  <li>    If the main cable collapses, the complete network collapses; length of main cable is also limited. </li>
+                </ul>
+              </li>
+
+              <li>    Ring: 
+                <ul>
+                  <li>    Every computer is connected to another computer on each side; each computer has exactly two neighbors. </li>
+                  <li>    Data transmission is done with the help of tokens, sequentially (bit by bit); data has to route its way through each node in the network to reach the destination. </li>
+                  <li>    If one computer crashes, the entire network activity is disrupted. </li>
+                </ul>
+              </li>
+
+              <li>    Star: 
+                <ul>
+                  <li>    All the nodes/computers are connected via cables to a single node called a hub, or the ‘central node’, which can be active or passive in nature. (Active hubs contain repeaters; passive nodes are considered non-intelligent) </li>
+                  <li>    If a node has failed, it can easily be replaced without affecting the working of the rest of the network. </li>
+                  <li>    All nodes are dependent on the hub, if for some reason the hub fails, the network fails. </li>
+                </ul>
+              </li>
+
+              <li>Full Mesh:
+                <ul>
+                  <li>    All nodes are connected with all the other nodes via a network channel. </li>
+                  <li>    Point-to-Point Connection.  </li>
+                  <li>    Has two techniques for transmission of data: routing and flooding. </li>
+                  <li>    Cabling is costly; bulk wiring is essential. </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li>    Logical – Shows how data flows within a network and from one device to another, regardless of the physical connections among devices.  </li>
+        </ul>
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <!-- new section -->
+        <h3 id="section5">Port and Protocols</h3>
+        <p><strong><em>Some redundant info here (but cyber wizards must know their protocols)</em></strong></p>
+
+        <h4>Port Number Ranges</h4>
+        <table>
+          <tr>
+            <td>Well-Known</td>
+            <td>0-1023</td>
+          </tr>
+
+          <tr>
+            <td>Registered</td>
+            <td>1024-49151</td>
+          </tr>
+
+          <tr>
+            <td>Private</td>
+            <td>49152-65535</td>
+          </tr>
+        </table>
+
+        <h4>Protocols</h4>
+        <ul>
+          <li>    ARP – Address Resolution Protocol 
+            <ul>
+              <li>Maps IP Address to MAC Address; Associates known IP address to unknown MAC address.</li>
+              <li>Operates on Layer 3 (Network)</li>
+              <li>Reverse ARP (RARP) – Reverse Address Resolution Protocol
+                <ul>
+                  <li>Associates known MAC address to unknown IP address.</li>
+                </ul>
+              </li>              
+              </ul>
+              
+          </li> <br>         
+          <li>    ICMP- Internet Control Message Protocol 
+            <ul>
+              <li>Error reporting mechanism for the IP protocol if there is a problem along the transmission path.</li>
+              <li>Tools for testing: ping and traceroute (tracert on Windows)</li>
+            </ul>
+          </li> <br>
+          <li>    FTP - File Transfer Protocol 
+            <ul>
+              <li>TCP port 20 – Data transfer</li>
+              <li>TCP port 21 – FTP Control</li>
+              <li>FTP url layout:
+                <ul>
+                  <li>ftp:// [user] : [password] @ [hostname or IP] : [port]</li>
+                  <li>example:	ftp://anonymous:user\@yahoo.com@localhost:21</li>
+                </ul>
+              </li>
+            </ul>
+          </li> <br>
+          <li>    SSH - Secure Shell 
+            <ul>
+              <li>Secure logins, file transfers, port forwarding</li>
+              <li>TCP port 22</li>
+              <li>Replaced Telnet as default remote login method</li>
+            </ul>
+          </li> <br>
+          <li>    Telnet 
+            <ul>
+              <li>TCP port 23</li>
+              <li>Unencrypted text communications & user login (communications in plaintext)</li>
+            </ul>
+          </li> <br>
+          <li>    DNS - Domain Name Service 
+            <ul>
+              <li>Hierarchical and decentralized naming system for computers, services, or other resources connected to the internet or a private network.</li>
+              <li>TCP/UDP port 53 – primarily uses UDP, but TCP is used when packets are larger.</li>
+            </ul>
+          </li> <br>
+          <li>    DHCP - Dynamic Host Configuration Protocol 
+            <ul>
+              <li>Grants IP addresses to connected devices in a network.</li>
+              <li>Based on/replaced BOOTP</li>
+              <li>BOOTP – allows a diskless client machine to discover its own IP address, the address of a server host, and the name of a file to be loaded into memory and executed.</li>
+              <li>UDP ports 67 & 68</li>
+              <li>D.O.R.A.
+                <ul>
+                  <li>Discover</li>
+                  <li>Offer</li>
+                  <li>Request</li>
+                  <li>Acknowledge</li>
+                  </ul>
+              </li>
+            </ul>
+          </li> <br> 
+          <li>    POP3 - Post Office Protocol (3) 
+            <ul>
+              <li>Application-layer protocol used by email clients to retrieve email from a mail server.</li>
+              <li>TCP port 110</li>
+            </ul>
+          </li> <br>
+          <li>    SUNRPC - Open Network Computing Remote Procedure Call 
+            <ul>
+              <li>RPC system that exists in most Unix-like systems</li>
+              <li>TCP port 111</li>
+            </ul>
+          </li> <br>
+          <li>    NetBIOS Name - Name Service (NetBIOS-NS) 
+            <ul>
+              <li>For name registration and resolution.</li>
+              <li>TCP/UDP port 137</li>
+              </ul>
+          </li> <br>
+          <li>    NetBIOS Datagram - Datagram distribution service (NetBIOS-DGM) 
+            <ul>
+              <li>For connectionless communication.</li>
+              <li>TCP/UDP port 138</li>
+              </ul>
+          </li> <br>
+          <li>    NetBIOS Session 
+            <ul>
+              <li>Session Service (NetBIOS-SSN) – for connection-oriented communication.</li>
+              <li>TCP/UDP port 139</li>
+              </ul>
+          </li> <br>
+          <li>    IMAP - Internet Message Access Protocol 
+            <ul>
+              <li>Used by email clients to retrieve email messages from a mail server over a TCP/IP connection. (POP3 but more secure)</li>
+              <li>TCP port 143</li>
+              </ul>
+          </li> <br>
+          <li>    SNMP - Simple Network Management Protocol 
+            <ul>
+              <li>For collecting and organizing information about managed devices on IP networks and for modifying that information to change device behavior.</li>
+              <li>TCP/UDP ports 161/162 (162 is Trap)</li>
+              </ul>
+          </li> <br>
+          <li>    HTTPS - Hypertext Transfer Protocol Secure 
+            <ul>
+              <li>Uses Transport Layer Security (TLS) (formerly SSL (Secure Socket Layer)) Asymmetric encryption algorithm to secure connection to web servers.</li>
+              <li>TCP port 443</li>
+              </ul>
+          </li> <br>
+          <li>    Syslog - System Message Logging 
+            <ul>
+              <li>Standard for message logging. Allows separation of the software that generates messages, the system that stores them, and the software that reports and analyzes them.</li>
+              <li>UDP port 514</li>
+              </ul>
+          </li> <br>
+          <li>    LDAPS (Secure) - Lightweight Directory Access Protocol, Secure 
+            <ul>
+              <li>Open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an IP network.</li>
+              <li>Directory services play an important role in developing internet applications by allowing the sharing of information about users, systems, networks, services, and applications throughout the network.</li>
+              <li>TCP/UDP port 636</li>
+              </ul>
+          </li> <br>
+          <li>    RDP - Remote Desktop Protocol 
+            <ul>
+              <li>Microsoft Terminal Server</li>
+              <li>TCP/UDP port 3389</li>
+              </ul>
+          </li> <br>
+          <li>    RPC – Remote Procedure Call 
+            <ul>
+              <li>A powerful technology for creating distributed client/server programs. Examples include:
+                <ul>
+                  <li>Microsoft EPMAP - Microsoft End Point Mapper
+                    <ul>
+                      <li>RPC locator service, used to remotely manage services including DHCP Server, DNS Server, and WINS.</li>
+                      <li>TCP/UDP port 135</li>
+                      </ul>
+                  </li>
+                  <li>NetBIOS Session Service
+                    <ul>
+                      <li>Method of connecting two computers for transmitting large messages or heavy data traffic. </li>
+                      <li>TCP port 139</li>
+                      </ul>
+                  </li>
+                  <li>Microsoft SMB – Microsoft Serve Message Block File Sharing
+                    <ul>
+                      <li>Allows systems to share files, printers, and serial ports within the network.</li>
+                      <li>Application and Presentation Layer</li>
+                      <li>TCP port 445</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li> <br>
+        </ul>
+
+        <h4>Protocols/Ports(Again)</h4>
+        <table>
+          <tr>
+            <td>DHCP</td>
+            <td>
+              <ul>
+                <li>Used by a host to obtain an IP address from a DHCP server.</li>
+                <li>DORA (Discover, Offer, Request, Acknowledge)</li>
+                <li>Port 67 (server)</li>
+                <li>Port 68 (client/source)</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>DNS</td>
+            <td>
+              <ul>
+                <li>A Distributed name system that contains services to map computer names to IP addresses and IP address to computer names.</li>
+                <li>Port 53</li>
+                <li>UDP for queries (UDP:53)</li>
+                <li>TCP for DNS zone transfers (TCP:53)</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SMTP</td>
+            <td>
+              <ul>
+                <li>Used to send mail messages across a network and is the basic for internet mail.</li>
+                <li>TCP:25</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>POP3</td>
+            <td>
+              <ul>
+                <li>Used to retrieve email from a mail server.</li>
+                <li>TCP:110</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>IMAP4</td>
+            <td>
+              <ul>
+                <li>Used to retrieve email from a mail server.</li>
+                <li>Enables users to search through messaged based on keywords.</li>
+                <li>TCP:143</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>HTTP</td>
+            <td>
+              <ul>
+                <li>The set of rules for exchanging files from server to client and vice versa.</li>
+                <li>TCP:80</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>HTTPS</td>
+            <td>
+              <ul>
+                <li>HTTP rides over the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) for secured web session.</li>
+                <li>TCP:443</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SSL</td>
+            <td>
+              <ul>
+                <li>Resides in Layer 6 – Presentation</li>
+                <li>Provides cryptographic security for Application Layer.</li>
+                <li>Limited to number of applications it can secure.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>TLS</td>
+            <td>
+              <ul>
+                <li>Upgrade of SSL.</li>
+                <li>No restriction on number of applications.</li>
+                <li>Used in VoIP and VPNs.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>FTP</td>
+            <td>
+              <ul>
+                <li>Used for exchanging and manipulating files over a TCP-based computer network.</li>
+                <li>TCP:20 for Data from server</li>
+                <li>TCP:21 for Commands from client</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>TFTP</td>
+            <td>
+              <ul>
+                <li>Simple protocol that only provides for the reading and writing of files or mail.</li>
+                <li>UDP:69</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Telnet</td>
+            <td>
+              <ul>
+                <li>Binary protocol that allows a user to establish a virtual connection with another host.</li>
+                <li>TCP:23</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Rlogin</td>
+            <td>
+              <ul>
+                <li>UNIX utility as alt. to Telnet</li>
+                <li>TCP:513</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SSH</td>
+            <td>
+              <ul>
+                <li>Cryptographic protocol that allows data to be exchanged using a secure channel between two networked devices.</li>
+                <li>Uses both symmetric and asymmetric encryption along with hashing.</li>
+                <li>Diffie-Hellman key exchange to shared secret key over insecure channel.</li>
+                <li>TCP:22</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>LDAP</td>
+            <td>
+              <ul>
+                <li>Application Layer protocol used to structure information on a directory server.</li>
+                <li>Used as a directory for telephone/address lookups.</li>
+                <li>TCP:389</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>LDAPS</td>
+            <td>
+              <ul>
+                <li>LDAP communication over SSL/TLS</li>
+                <li>TCP:636 or 3269</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SNMP</td>
+            <td>
+              <ul>
+                <li>Used to manage and collect statistical network data from remote devices through polling:
+                  <ul>
+                    <li>Performance stats</li>
+                    <li>Network availability and error rates</li>
+                  </ul>
+                </li>
+                <li>UDP:161 – Managers communicating with Agents (polling).</li>
+                <li>UDP:162 – Agents send unsolicited Traps messages to Managers.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>NetBIOS</td>
+            <td>
+              <ul>
+                <li>Service to provide communication over a LAN.</li>
+                <li>Session layer of OSI</li>
+                <li>Names are up to 15 characters long (usually computer’s name running NetBIOS).</li>
+                <li>Microsoft requires all CAPS.</li>
+                <li>UDP:137 – Name
+                  <ul>
+                    <li>Provides name registration and resolution.</li>
+                  </ul>
+                </li>
+                <li>UDP:138 – Datagram
+                  <ul>
+                    <li>Distribution service for connectionless communication.</li>
+                  </ul>
+                </li>
+                <li>TCP:139 – Session
+                  <ul>
+                    <li>Reliable, connection-oriented communication</li>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SMB</td>
+            <td>
+              <ul>
+                <li>Allows systems to share files, printers, and serial ports within the same network.</li>
+                <li>Application and Presentation Layer of OSI</li>
+                <li>Part of AD in Linux</li>
+                <li>TCP:445</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>SUNRCP</td>
+            <td>
+              <ul>
+                <li>TCP:111</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Syslog</td>
+            <td>
+              <ul>
+                <li>UDP:514</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>RDP</td>
+            <td>
+              <ul>
+                <li>TCP:3389</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Kerberos</td>
+            <td>
+              <ul>
+                <li>Port 88</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h4>NETBIOS (expanded)</h4>
+        <ul>
+          <li>    Service to provide communication over a LAN. Session layer of OSI. Names are up to 15 characters long, usually the name of a computer running NetBIOS. Microsoft requires ALL CAPS.  </li>
+          <li>    Port 137 (UDP) – Name: provides name registration and resolution. </li>
+          <li>    Port 138 (UDP) – Datagram: distribution service for connectionless communication, </li>
+          <li>    Port 139 (TCP) – Session: reliable, connection-oriented communication. </li>
+        </ul>
+
+        <h4>BOOTP/DHCP (expanded)</h4>
+        <ul>
+          <li>    BOOTP: allows a diskless client machine to discover its own IP address, the address of a server host, and the name of a file to be loaded into memory and executed. </li>
+          <li>    DHCP: based on BOOTP, adding the capability of automatic allocation of reusable network addresses and additional configuration options.  DHCP captures the behavior of BOOTP relay agents, and DHCP participants can interoperate with BOOTP participants. 
+            <ul>
+              <li>Discover, Offer, Request, Acknowledge</li>
+            </ul>
+          </li>
+        </ul>
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <!-- new section -->
+        <h3 id="section6">Routing Protocols</h3>
+        <table>
+          <tr>
+            <td>Autonomous Systems</td>
+            <td>A set of Routable IP prefixes that are under a network or collection of networks managed by an entity.</td>
+          </tr>
+
+          <tr>
+            <td>Interior Gateway Protocols</td>
+            <td>Used to exchange routing information with an autonomous system.</td>
+          </tr>
+
+          <tr>
+            <td>Exterior Gateway Protocols</td>
+            <td>Protocols used to exchange routing information between autonomous systems</td>
+          </tr>
+
+          <tr>
+            <td>Path-Vector Routing Protocols</td>
+            <td>Maintains path information that gets updated dynamically.</td>
+          </tr>
+
+          <tr>
+            <td>Administrative Distance</td>
+            <td>Each entry in the routing table contains the destination network, next router, and path to reach the destination. The lower the better.</td>
+          </tr>
+        </table>
+
+        <h4>Routing Protocol Classes</h4>
+        <ul>
+          <li>    Classful: Variable-length subnetting masks (VLSM) not supported, CIDR not supported. </li>
+          <li>    Classless: VLSM and Classless Inter-Domain Routing supporting. </li>
+        </ul>
+
+        <h4>Routing Protocols</h4>
+        <ul>
+          <li>    RIP – “Routing Information Protocol”, one of the oldest distance-vector routing protocols which employs hop count as a routing metric. 
+            <ul>
+              <li>Prevents routing loops by implementing a limit on the number of hops allowed in a path from source -> destination.</li>
+              <li>Uses UDP port 520 by default.</li>
+              <li>RIPv1 ¯¯\</li>
+              <li>RIPv2  -- All RIPs have a hop limit of 15, and an Administrative Distance (AD) of 120.</li>
+              <li>RIPng  _/</li>
+            </ul>
+          </li> <br>
+          <li>    BGP – “Border Gateway Protocol” 
+            <ul>
+              <li>Only Routing Protocol is still considered an Exterior Gateway Protocol</li>
+              <li>Path-vector routing protocol that makes routing decisions based on paths, network policies, or rule-sets configured by a network administrator.</li>
+            </ul>
+          </li> <br>
+          <li>    OSPF – ‘Open Shortest Path First’, an interior Gateway Protocol used to distribute routing information within a single Autonomous System.  
+            <ul>
+              <li>Designed due to a need in the internet community to introduce a high functionality, non-proprietary Internal Gateway Protocol (IGP) for the TCP/IP protocol family.</li>
+              <li>Based on link-state technology, which is a departure from vector-based algorithms used in traditional routing protocols like RIP.</li>
+              <li>No limitation on the hop count.</li>
+              <li>Allows for better load balancing and definition of networks where routers can be divided into areas; reduces explosion of link-state updates over the whole network and provides a mechanism for aggregating routes while cutting down on unnecessary propagation of subnet information.</li>
+              <li>Default Administrative Distance (AD) of 110.</li>
+            </ul>
+          </li> <br>
+          <li>    EIGRP – ‘Enhanced Interior Gateway Protocol’, an IGP suited for many topologies and media. 
+            <ul>
+              <li>Scales well and provides extremely quick convergence times with minimal network traffic.</li>
+              <li>When a change occurs in the network, only routing tables are propagated, reducing the load the routing protocol itself puts on the network.</li>
+              <li>‘Enhanced distance vector protocol’, relies on the ‘Diffused Update Algorithm’ (DUAL) to calculate shortest path to a destination within a network.</li>
+              <li>Default Administrative Distance (AD) of 5.</li>
+              </ul>
+          </li> <br>
+          <li>    Other Administrative Distance (AD) Values of note:
+            <ul>
+              <li>  Connected Interface: 0 AD</li> 
+              <li>  Static Route: 1 AD</li> 
+              <li>  External Border Gateway Protocol (BGP): 20 AD</li>
+              <li>  Internal EIGRP: 90 AD</li>
+              <li>  Interior Gateway Routing Protocol: 100 AD</li>
+              <li>  Exterior Gateway Protocol: 140 AD</li>
+              <li>  Internal Border Gateway Protocol (BGP): 200 AD</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>Routing Protocols (supplemental definition)</h4>
+        <ul>
+          <li>    BGP 
+            <ul>
+              <li>Path Vector Protocol (PVP), which maintains paths to different hosts, networks and gateway routers and determines the routing decision based on that. AD of 200.</li>
+              <li>Used for routing between autonomous systems (AS)</li>
+              <li>Best Path Algorithm consisting of 13 steps</li>
+              </ul>
+          </li> <br>
+          <li>    EIGRP 
+            <ul>
+              <li>Advanced distance-vector routing protocol (hybrid) that is used on a computer network for automating routing decisions and configuration. The protocol was designed by Cisco Systems as a proprietary protocol, available only on Cisco routers. AD of 90.</li>
+              <li>Uses Diffusing Update Algorithm (DUAL), based off bandwidth, delay, load, reliability and MTU.</li>
+              <li>Classless</li>
+              </ul>
+          </li> <br>
+          <li>    IGRP 
+            <ul><li>> Proprietary distance vector routing protocol used to communicate routing information within a host network. It was invented by Cisco. </li></ul>
+          </li> <br>
+          <li>    RIP 
+            <ul>
+              <li>Dynamic routing protocol which uses hop count (max 15) as a routing metric to find the best path between the source and the destination network. It is a distance vector routing protocol which has AD value 120 and works on the application layer of OSI model. RIP uses port number 520.</li>
+              <li>Classful</li>
+              </ul>
+          </li> <br>
+          <li>    RIPv2/RIPng 
+            <ul>
+              <li>Max Hop Count of 15</li>
+              <li>Classless</li>
+              <li>AD: 120</li>
+              </ul>
+          </li> <br>
+          <li>    OSPF 
+            <ul>
+              <li>Routing protocol for Internet Protocol (IP) networks. It uses a link state routing (LSR) algorithm and falls into the group of interior gateway protocols (IGPs), operating within a single autonomous system (AS). AD of 110.</li>
+            </ul>
+          </li> <br>
+          <li>    IS-IS (Intermediate System-to-Intermediate System)
+            <ul>
+              <li>Interior gateway protocol, designed for use within an administrative domain or network. The de facto standard for Internet Service Provider backbone routers. </li>
+              <li>Link State protocol</li>
+              <li>Dijkstras Algorithm (Shortest path first) prioritizes links with the lowest overall cost (cost being several metrics)</li>
+              <li>Classless</li>
+              <li>AD: 115</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>Distance Vector vs Link State Protocls</h4>
+       <table>
+         <tr>
+           <td>Distance Vector</td>
+           <td>Link State</td>
+         </tr>
+
+         <tr>
+          <td>Sends entire routing table during updates</td>
+          <td>Only provides link state information</td>
+        </tr>
+
+        <tr>
+          <td>Sends periodic updates every 30-90 seconds</td>
+          <td>Uses triggered updates</td>
+        </tr>
+
+        <tr>
+          <td>Broadcasts updates</td>
+          <td>Multi casts updates</td>
+        </tr>
+
+        <tr>
+          <td>Vulnerable to routing loops</td>
+          <td>No risk of routing loops</td>
+        </tr>
+
+        <tr>
+          <td>RIP, IGRP</td>
+          <td>OSPF, IS-IS</td>
+        </tr>
+       </table>
+       <a class="back_to_categories" href="#top">Back to Categories</a>
+       <!-- new section -->
+        <h3 id="section7">TCP/UDP/Ethernet Headers</h3>
+        <ul>
+          <li>    TCP (20 bytes): Source Port, Destination Port, SEQ number, ACK number, Flags, Window Size, Checksum, Urgent Pointer, Data. Max payload size of 1460 bytes. </li>
+          <li>    UDP (8 bytes): Source Port, Destination Port, Length, Checksum, Data. Max payload size is 1472 bytes). </li>
+          <li>    Ethernet: Destination MAC, Source MAC, EtherType (0800 for IPv4), Payload, Checksum. Minimum size of 64 bytes and maximum payload size of 1500 bytes.  </li>
+        </ul>
+
+        <h4>Header Diagrams</h4> <br> <br>
+
+        <img src="../images/header_diagrams.png" alt=""> <br><br><br>
+        <img src="../images/1.png" alt=""> <br><br>
+        <img src="../images/2.png" alt=""> <br><br>
+        <img src="../images/3.png" alt=""> <br><br>
+        <img src="../images/4.png" alt=""> <br><br>
+        <img src="../images/5.png" alt=""> <br><br>
+
+        <img src="../images/networking/ipv4_header.png" alt=""><br>
+        <img src="../images/networking/ethernet_type2_header.png" alt=""><br>
+        <img src="../images/networking/header1.png" alt=""><br>
+        <img src="../images/networking/header2.png" alt=""><br>
+        <img src="../images/networking/header3.png" alt=""><br>
+        <img src="../images/networking/header4.png" alt=""><br>
+        <img src="../images/networking/header5.png" alt=""><br>
+        <img src="../images/networking/header6.png" alt=""><br>
+        <img src="../images/networking/header7.png" alt=""><br>
+        <img src="../images/networking/header8.png" alt=""><br>
+        <img src="../images/networking/header9.png" alt=""><br>
+        <img src="../images/networking/header10.png" alt=""><br>
+        <img src="../images/networking/header11.png" alt=""><br>
+        
+
+        <a class="back_to_categories" href="#top">Back to Categories</a>
+        <!-- new section -->
+        <h3 id="section8">Network Miscellaneous</h3>
+        <h4>Important Terms</h4>
+        <table>
+          <tr>
+            <td>ARP</td>
+            <td>
+              <ul>
+                <li>Map IP address to MAC address</li>
+                <li>Layer 3 – Network</li>
+                <li>Associate known IP address to unknown MAC address</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Reverse ARP</td>
+            <td>
+              <ul>
+                <li>Associate MAC address to unknown IP address</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>IP Config Command</td>
+            <td>
+              <ul>
+                <li>Windows: ipconfig</li>
+                <li>Linux: ifconfig</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>FQDN</td>
+            <td>
+              <ul>
+                <li>A unique name used to identify a partical system in the namespace.</li>
+                <li>Host.parent_domain.top_level_domain.root_domain (implied): www.google.com.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>ICMP</td>
+            <td>
+              <ul>
+                <li>An error reporting mechanism for the IP protocol if there is a problem along the transmission path.</li>
+                <li>Tools for testing: ping and traceroute</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Ping</td>
+            <td>
+              <ul>
+                <li>ICMP utility</li>
+                <li>Echo request/reply from a remote host to verify if it is available for communication.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Traceroute</td>
+            <td>
+              <ul>
+                <li>Linux: traceroute uses UDP</li>
+                <li>Windows: tracert uses ICMP</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>NAT</td>
+            <td>
+              <ul>
+                <li>Function of connecting multiple computers to the Internet using one or multiple routable IP addresses.</li>
+                <li>Network masquerading or IP-masquerading.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td>PAT</td>
+            <td><ul>
+              <li>Uses a network device that translates multiple local addresses to a single global address by keeping track of port assignments.</li>
+            </ul></td>
+          </tr>
+
+          <tr>
+            <td>Netstat</td>
+            <td><ul>
+              <li>Provides information and statistics about protocols in use and current TCP/IP network connections.</li>
+              <li>-a provides all connections</li>
+              <li>-n provides numerical of protocols</li>
+              <li>-o provides PID</li>
+            </ul></td>
+          </tr>
+        </table>
+        <ul>
+          <li>Firewall – network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. A firewall typically establishes a barrier between a trusted network and an untrusted network, such as the internet.
+            <ul>
+              <li>May be either a form of software or a physical device.</li>
+            </ul>
+          </li> <br>
+          <li>IDS – Intrusion Detection System
+            <ul>
+              <li>Device or software application that monitors a network or systems for malicious activity or policy violations; reports as necessary either to administrator or via SIEM.</li>
+            </ul>
+          </li> <br>
+          <li>IPS – Intrusion Prevention System
+            <ul>
+              <li>Network security appliances that monitor network traffic and/or system activities for malicious activity.</li>
+              <li>Unlike IDS, IPSs are placed in-line and are able to actively prevent or block intrusions that are detected.</li>              
+            </ul>
+          </li> <br>
+        </ul>
+
+        <h4>TCP/IP 3-Way Handshake</h4>
+        <ul>
+          <li>    Before a client attempts to connect with a server, the server must first bind to and listen at a port to open it up for connections. (passive open) </li>
+          <li>    Once the passive open is established, a client may establish a connection by initiating an active open by doing the following:
+            <ul>
+              <li>SYN – The active open is performed by the client sending a SYN to the server. The client sets the segments sequence number to a random value ‘A’.</li>
+              <li>SYN-ACK – In response, the server replies with a SYN-ACK. The acknowledgment number is set to one more than the received sequence number (ex: A + 1), and the sequence number that the server chooses for the packet is another random value ‘B’.</li>
+              <li>ACK – Finally, the client sends an ACK back to the server. The sequence number is set to the received acknowledgment value (A + 1) and the acknowledgment number is set to one more than the received sequence number (B + 1).</li>
+            </ul>  
+          </li>
+          </ul>
+
+        <h4>SEQ Numbers</h4>
+        <ul>
+          <li>    SEQ numbers are 32 bits. Used by transmitter on each transmitted packet. SEQ numbers are random when host initiates a TCP session (typically 0 [relative] by default for Wireshark purposes).  </li>
+          <li>    ACK numbers are used to inform sender that the transmitted data was sent successfully. </li>
+          <li>    ACK numbers are based on SEQ number and amount of data sent over transmission. SEQ+DATA=ACK. </li>
+        </ul>
+
+        <h5>Time-to-Live (TTL) for Packets</h5>
+        <table>
+          <tr>
+            <td>TTL:255</td>
+            <td>Cisco, Solaris/AIX</td>
+          </tr>
+
+          <tr>
+            <td>TTL:128</td>
+            <td>Windows</td>
+          </tr>
+
+          <tr>
+            <td>TTL:64</td>
+            <td>Linux/Unix</td>
+          </tr>
+        </table> 
+        
+        
+        <h4>NAT & PAT</h4>
+        <ul>
+          <li>    NAT – Network Address Translation
+            <ul>
+              <li>Method of mapping an IP address space into another by modifying network address information in the IP header of packets while they are in transit across a traffic routing device.</li>
+              <li>(Privatizes IP addresses, and lets a single, routable IP address be used for an entire private network.)</li>
+            </ul>
+          </li>
+          <li>    PAT – Port Address Translation
+            <ul>
+              <li>Extension of NAT that permits multiple devices on a LAN to be mapped to a single public IP address to conserve IP addresses.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>IEEE Standards</h4>
+        <ul>
+          <li>802.1 – LAN</li>
+          <li>802.3 – Ethernet</li>
+          <li>802.6 – MANs</li>
+          <li>802.8 – Fiber Optic</li>
+          <li>802.11 – Wireless LAN (WLAN) & Mesh (Wi-Fi)</li>
+          <li>802.15.1 - Bluetooth</li>
+        </ul>
+
+        <h4>Networking commands</h4>
+        <ul>
+          <li>    Basic networking commands (netstat, arp, ifconfig, route, grep, ip, etc.); know common flags </li>
+          <li>    Arp -a  - displays and modifies entries in the Address Resolution Protocol (ARP) cache, which contains one or more tables that are used to store IP addresses and their resolved Ethernet or Token Ring physical addresses. (Flag: Specific IP address) </li>
+          <li>    Netstat 
+            <ul>
+              <li>Reading netstats and understanding the basic fundamentals on what is going on</li>
+              <li>Netstat (Network Statistics) defined: provides information and statistics about protocols in use and current TCP/IP network connections.</li>
+              <li>Netstat -ano  - print network connections, routing tables, interface states (Flags: ALL, NUMERIC, TIMERS)</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>Networking APIs</h4>
+        <ul>
+          <li>    NetBIOS – “Network Basic Input/Output System” 
+            <ul>
+              <li>Provides services related to the session layer (Layer 5) of the OSI model allowing applications on separate computers to communicate over a local area network (LAN)</li>
+              <li>Strictly an API, not a networking protocol.</li>
+              </ul>
+          </li> <br>
+          <li>    SMB – “Server Message Block” 
+            <ul>
+              <li>Provides file sharing, printing, and inter-process communications (IPC) over a network.</li>
+              <li>Was often used with NetBIOS over TCP/IP (NBT) over UDP, using ports 137 and 138, and TCP ports 137 and 139.</li>
+              </ul>
+          </li> <br>
+          <li>    winsock – “Windows Sockets API” 
+            <ul>
+              <li>Technical specification that defines how Windows network application software should access network services, especially TCP/IP.</li>
+              <li>Defines a standard interface between a Windows TCP/IP client application (such as FTP client or a web browser) and the underlying TCP/IP protocol stack.</li>
+              </ul>
+          </li> <br>
+        </ul>
+
+        <h4>Domains</h4>
+        <p> <strong><em>additional research encouraged to supplement this section</em></strong>  </p>
+
+        <ul>
+          <li>
+            <ul>
+              <li>How domains work (Kerberos, DCs, Trusts, Active Directory)</li>
+              <li>Domain Controllers (DC) - a server that responds to authentication requests and verifies users on computer networks.
+                <ul>
+                  <li>holds the key to the Active Directory (AD)</li>
+                  <li>Windows - Microsoft Active Directory or Microsoft AzureAD</li>
+                  <li>Linux - Samba, RPCClient</li>
+                  <li>DC vs AD - AD is a type of domain, DC is important server on that domain</li>
+                  <li>Every domain has Domain Controller, but not every domain has an Active Directory</li>
+                  </ul>
+              </li>
+            
+            </ul>
+          </li>
+      </ul>
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+      </p>
+    </div>
+  </body>
+</html>

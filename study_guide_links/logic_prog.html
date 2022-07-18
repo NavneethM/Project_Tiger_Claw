@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extra Information</title>
+
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/extra.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_extra.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <a href="../Resources/page_STUDY_GUIDE.html"
+        ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+      /></a>
+    </div>
+    <div class="sections">
+      <a href="#section1">Conversion and Arithmetic</a> <br>
+      <a href="#section2">Boolean Arithmetic</a> <br>
+      <a href="#section3">Programming</a> <br>
+      <a href="#section4">Raven's Progressive Matrices</a> <br>
+    </div>
+    <h2>Logic & Programming</h2>
+    <div>
+      <p>        
+        <h3>Conversion and Arithmetic</h3>
+        <h4>Hex</h4>
+        <ul>
+          <li>Also known as Base 16.</li>
+          <li>To convert anything to Hex, it’s easiest to convert the original value to binary bytes (8 bits per hex) and utilize the 8/4/2/1 rule to find the Hex value.</li>
+          <ul>
+            <li>A Hex digit can range from 0 to F, where 10-15 are equal to A-F, respectively. (example:   0011 1010 = 3A16 (also may show up as 0x03A))</li>
+          </ul>
+        </ul>
+  
+        <h4> Octal</h4><ul>
+          <li>Also known as Base 8, or oct.</li>
+          <li>To convert to Octal, you take a binary value (converted if necessary) and split it up into sets of 3 from right to left, filling in the left-most group of bits with 0’s if needed. From there, you calculate each octal value with the combined value of the 3 bits as compared to 4/2/1, understanding that the max value per octal group can be 7. (example:   1101 0111 0010 01010 -> (I had to add a zero ->) 011 | 010 | 111 | 001 | 001 | 010 -> 3 | 2 | 7 | 1 | 1 | 2 (3271128)</li>
+        </ul>
+       
+       <h4>Decimal</h4>
+       <ul>
+        <li>AKA Base 10, or dec.</li>
+        <li>Decimal is the standard number format in most instances, being the most human readable.</li>
+        <li>To convert to Decimal, take a binary value (converted if necessary), and, going from right to left, count the number of bits. A decimal value is equivalent to the total of (2 to the power of the number of bits in the value where the bit is 1, minus 1).</li>
+        <li>A better way to explain is with an example:</li>
+        <ul>
+          <li>Take the binary value: 0101 0110 0001.. We can see that there are 12 bits, but the first bit is 0, so the first number will be the first 1 bit, which is 210  or 1024. From there it’s all just the addition of each ‘1’ bit with its value (See chart, below). For this example, it would be 1024 + 256 + 64 + 32 + 1 = 137710</li>
+        </ul>
+      </ul>
+  
+       <h4>Binary</h4> 
+       <ul>
+        <li>AKA Base 2, or bin.</li>
+        <li>Finally, converting to binary is wholly dependent upon the format of the value you’re starting with, with the conversion pretty much being the reverse of each previously notated method. (note: it’s generally easier to go from right to left.)</li>
+        <li>Hex -> Binary		Take the Byte value of each Hex digit (0-F) and make it fit into a byte.</li>
+        <ul>
+          <li>Example:	9F316  -> 1001 1111 00112</li>
+        </ul>
+        <li>Oct -> Binary		Take each digit of the octal number and convert them back into the binary groups of 3. From there, just format it as it should be when represented in binary (Add padding 0’s to the beginning, as needed).</li>
+        <ul>
+          <li>Example:   	732468   -> [ 7 | 3 | 2 | 4 | 6 ] -> [ 111 | 011 | 010 | 100 | 110 ] -> 0111 0110 1010 01102</li>
+          <li>~Keep in mind that the maximum number each digit of octal can be is ‘7’!</li>
+        </ul>
+        <li>Decimal -> Binary	This is arguably the most difficult conversion simply for how large the numbers can get, as well as the necessity to do a lot of math. To convert to binary from decimal you have to find the largest iteration of 2^# that will fit into the number, then go down from there, following rules similar to long division, where you subtract the highest number, you can from the remainder until the remainder = 0.</li>
+        <ul>
+          <li>Example:	89310  -> 0011 0111 11012</li>
+        </ul>
+      </ul>
+      <a class="back_to_categories" href="#top">Back to Categories</a>  
+      <!-- end section -->
+      <h3 id="section2">Boolean Arithmetic</h3> <br>
+      <ul>
+        <li>    <h5>AND</h5> <br> 
+        Denoted as ( x^y | x AND y | Kxy ) 
+          Conjunction; satisfies ‘x AND y = 1, if x = y = 1’ and ‘x AND y = 0’ otherwise. 
+          Example: 	x = 1, y = 0	is the statement: ‘x AND y = 1’ True? No, because not both of the values equal 1, so it is False. 
+       </li> <br> 
+        <li>    <h5>OR</h5> <br> 
+          Denoted as ( x∨y | x OR y | Axy ) 
+          Disjunction; satisfies ‘x OR y = 0, if x = y = 0’, and ‘x OR y = 1’ otherwise. 
+          Example:	x = 1, y = 0	is the statement ‘x OR y = 1’ True? Yes, because one of the two values are equal to 1, so it is True. 
+       </li> <br>
+        <li>    <h5>NOT</h5> <br> 
+          Denoted as ( ¬x | NOT x | Nx | x → y | !x ) 
+          Negation; satisfies ‘!x = 0 if x = 1’ and ‘!x = 1 if x = 0’ 
+          Example:	x = 1		is the statement ‘!x = 0’ True? Yes, because NOT x (1) is equal to 0 in this case. So it is True. </li> <br>
+        <li>  <h5>NAND</h5> <br>
+          Denoted as ( x ↑ y | x NAND y | ‘x | y’ | Dxy ) 
+          Negation of Conjunction; satisfies ‘x NAND y = 1’ if x = 1, y = 0, ‘x NAND y = 0’ otherwise. 
+          Example:	x = 1, y = 1	is the statement ‘x NAND y = 1’ True? No, because one of the two statements has to be False in order to make a NAND statement true. 
+       </li> <br>
+        <li>    <h5>NOR</h5> <br>
+          Denoted as ( x ↓ y | x NOR y ) 
+          Joint Denial; satisfies ‘x NOR y = 1’, if x = 0, y = 0, and ‘x NOR y = 1’ otherwise. 
+          Example:	x = 1, y = 0	is the statement ‘x NOR y = 1’ True? No, because in order to make a NOR statement like this true, neither x NOR y can be 1. </li> <br>
+        <li>    <h5>XOR</h5> <br>
+          Denoted as ( x ⊕ y | x XOR y ) 
+          Exclusive OR; satisfies ‘x XOR y = 1, if x = 0, y =1’, ‘x XOR y = 0’ otherwise. 
+          Example:	x = 1, y = 0	is the statement ‘x XOR y = 1’ True? Yes, because one of the two values is 1, so this statement is True. </li>
+      </ul>
+    <a class="back_to_categories" href="#top">Back to Categories</a> 
+    <!-- end section -->
+        <h3 id="section3">Programming</h3> <br>
+          <h4>Compiled vs Interpreted</h4> <br>
+          <ul>
+            <li>  <h5>Compiled</h5>  <br> Coded by a human, then that source code translates directly into assembly language so that the target program runs and returns a desired result. 
+              Examples of Compiled languages include: C, C++, Erlang, Rust, Go, etc.. 
+              Key traits of Compiled Languages: 
+              Faster running than interpreted code (closer to bare metal); efficiently uses machine hardware. 
+              Platform dependent (Not every form of compiled source code will run on every OS, and might be constrained by architecture, ie: 32-bit vs 64-bit) 
+              Compile times increased – In order to troubleshoot/test the code, it has to be compiled. </li> <br>
+            <li>    <h5>Interpreted</h5> <br> Source code is not translated by the target machine. Instead, a different program (the interpreter) reads and executes the code. 
+              Examples of Interpreted languages include: PHP, Ruby, Python, JavaScript, etc 
+              Key traits of Interpreted Languages: 
+              Significantly slower than compiled languages (Read line by line) 
+              Typically more flexible than compiled 
+              Platform independent (Doesn’t matter what OS as long as it has the interpreter) </li> <br>
+          </ul>
+        <h4>Coding Fundamentals and Logic</h4> <br>
+        <ul>
+          <li>    Understanding basics of bash/wmic/cmd script  </li> <br>
+          <li>    Loops (for, while, do while), non-shell scripts (Python, C, etc)  </li> <br>
+          <li>    This is a binary search algorithm (Also known as half-interval search). You can tell because it cuts the list in half, tests if the value is equal to what is being searched for, then splits the list in half. The next half is determined based on whether the returned value is less than or greater than the value being searched for (‘6’). The final iteration returns 6, which is a match, the script then escapes the while loop through the bool: test, since the loop was based on the fact that the variable test was initially False. </li> <br>
+          <li>    A linear search algorithm simply iterates through a list/array until a match is found. </li> <br>
+          <li>    An interpolation search algorithm searches for a key in an array that has been ordered by numerical values assigned to the keys. Resembles the method by which people search a telephone directory for an entities phone number, with the key value being the name that is assigned to each number.  </li>
+        </ul>
+        <a class="back_to_categories" href="#top">Back to Categories</a> 
+        <!-- end section -->
+        <h3 id="section4">Raven's Progressive Matrices</h3> <br>
+        <div>
+          <p>
+            OVERVIEW <br>
+            <br>
+            This preparation guide is intended to help you prepare for the Matrix Test. The Matrix Test 
+            measures your ability to reason and identify patterns. You will be presented a 3 x 3 matrix 
+            containing shapes that follow one or more patterns. The lower right cell of the matrix is 
+            missing. You need to use the patterns in the rest of the matrix in order to decide which 
+            answer choice belongs in the missing cell. <br>
+            <br>
+            PRACTICE TEST <br>
+            To help you prepare for the Matrix Test, here are five practice items 
+            similar to those on the actual test. Read each question and determine which of the options 
+            represents the correct answer. Once you are done with each question, look at the next page 
+            and compare your answers to the answers and explanations that we have provided for you. 
+            Although it may be tempting to check an answer before completing a question, you will 
+            receive the most benefit from the practice situations if you answer the question first. <br>
+            <br>
+            TEST TAKING TIPS <br>
+            <br>
+            Before starting the practice Matrix Test, review these test taking tips: 
+            <ol>
+              <li>Review each question carefully before determining the correct response. </li>
+              <li>Answer all questions even if you are unsure which option represents the correct answer. You are not penalized for incorrect responses. </li>
+              <li>Finally, take time to study the explanation for each of the questions/answers very carefully. This will help you fine-tune your reasoning on the actual test.</li>
+            </ol>
+            <br>
+            Practice Item #1 <br>
+            <br>
+            In the item below, try to visualize the shape that would complete the matrix, based on the 
+            pattern(s) of shapes. <br>
+            <img src="..\images\log_prog\matrix question 1.jpg"></img><br>
+            <br>
+            Select the option that best completes the matrix. <br>
+            <img src="..\images\log_prog\matrix question 1 options.jpg"></img><br>
+            <br>
+            <br>
+            Practice Item #1 Explanation   <br>         
+            There are three patterns in this matrix: 
+            <ul>
+              <li>In the first pattern, the shape changes across rows, from trapezoids in the top row, to 
+                arrows in the middle row, to triangles in the bottom row. Therefore, the missing cell must 
+                contain a triangle. </li>
+              <li>In the second pattern, the line type changes across columns. The lines in the left 
+                column are medium thickness, the lines in the middle column are bold, and the lines in the 
+                right column are dotted. Therefore, the missing cell must have a shape with dotted lines.</li>
+              <li>In the third pattern, the shapes rotate across columns. Moving from the left column to 
+                the center column, the shapes rotate clockwise by 45 degrees (one eighth of a turn). 
+                From the center column to the right column, the shapes rotate another 45 degrees. 
+                Therefore, the shape in the missing cell must be rotated 45 degrees compared to the 
+                shape that is in the middle column of the bottom row. </li>
+            </ul>
+            Putting these requirements together, the correct answer will be a triangle with dotted lines
+            that is rotated 45 degrees compared to the triangle that is in the middle column of the 
+            bottom row. Option A is correct because it meets all of these requirements. <br>
+            <br>
+            <br>
+            Practice Item #2 <br>
+            <img src="..\images\log_prog\matrix question 2.jpg"></img><br>
+            <br>
+            Select the option that best completes the matrix. <br>
+            <img src="..\images\log_prog\matrix question 2 options.jpg"></img><br>
+            <br>
+            Practice Item #2 Explanation <br>
+            There are two sets of shapes in this matrix. Each set has its own patterns. <br>
+            The first set of shapes is the bold, wide arrow that appears in every cell. <br>
+            <ul>
+              <li>This shape has three orientations: pointing to the right, pointing up, and pointing to 
+                the upper right. Each orientation appears exactly once in each row and each 
+                column. The right column and the bottom row each already contain one bold, wide 
+                arrow pointing up, and one that is pointing to the right. So, the missing cell must 
+                contain a bold, wide arrow that is pointing to the upper right.</li>
+            </ul>
+            The second set of shapes has two patterns:
+            <ul>
+              <li>First, the shape and line type change across columns, from ovals with thin lines 
+                in the left column, to narrow arrows with medium lines in the middle column, to 
+                rectangles with dotted lines in the right column. So, the missing cell must contain a 
+                rectangle with dotted lines. </li>
+              <li>Second, there are three different sizes of shapes in this set: small, medium, and 
+                large. Each size appears exactly once in each row and once in each column. 
+                The right column and the bottom row each contain one large shape and one small 
+                shape. Therefore, the missing cell must contain a medium-sized shape. 
+                </li>
+            </ul>
+            Putting these requirements together, the correct answer must contain a bold, wide arrow 
+            pointing to the upper right to complete the first set of shapes, as well as a medium-sized 
+            rectangle with dotted lines to complete the second set of shapes. Therefore, Option A is 
+            correct. <br>
+            <br>
+            <br>
+            Practice Item #3 <br>
+            <img src="..\images\log_prog\matrix question 3.jpg"></img><br>
+            <br>
+            Select the option that best completes the matrix. <br>
+            <img src="..\images\log_prog\matrix question 3 options.jpg"></img><br>
+            <br>
+            Practice Item #3 Explanation <br>
+            <br>
+            This item is different from the example item and the first practice item. In this item, the 
+            shapes in the right column are determined by combining the shapes in the left and 
+            middle columns. In other words, the shapes in the right column are all of the shapes that 
+            appear in the left column, plus all of the shapes that appear in the center column. <br>
+            <br>
+            Look at the top row. The right column contains the two hearts that are in the left column, 
+            and the rectangle and the lightning bolt that are in the center column. <br>
+            <br>
+            Similarly, in the middle row, the heart in the left column is added to the shapes in the center 
+            column. The right column contains all of these shapes. (The heart that is in the left column 
+            overlaps with the same heart in the middle column, so they appear as a single shape in the 
+            right column.) <br>
+            <br>
+            In the bottom row, the two hearts in the left column are added to the five shapes in the 
+            center column. Therefore, the missing cell must contain five shapes: the wide heart, the 
+            narrow heart, the wide rectangle, the narrow rectangle, and the lightning bolt. Option C is 
+            the correct answer because it contains all five of these shapes. (Just like in the middle row, 
+            the two hearts that are in the left column completely overlap with the same two hearts in the 
+            center column.) <br>
+            <br>
+            Note that this pattern also holds vertically: The bottom row contains all of the shapes that 
+            appear in the top row, plus all of the shapes that appear in the middle row. <br>
+            <br>            
+            Practice Item #4 <br>
+            <img src="..\images\log_prog\matrix question 4.jpg"></img><br>
+            <br>
+            Select the option that best completes the matrix. <br>
+            <img src="..\images\log_prog\matrix question 4 options.jpg"></img><br>
+            <br>
+            Practice Item #4 Explanation <br>
+            <br>
+            In this item, <strong>the shapes that are in the right <u>column</u>  are the ones that are common to
+            both the left and center columns.</strong> In other words, the right column contains only the 
+            shapes that appear in both the left column and the center column of the same row. Shapes 
+            that are in only the left column or the center column do not appear in the right column. <br>
+            <br>
+            Look at the top row. The X appears in both the left and center columns. However, the arrow 
+            only appears in the left column and the lightning bolt only appears in the center column. 
+            Therefore, the right column contains the X, but not the arrow or the lightning bolt. <br>
+            <br> 
+            Similarly, in the middle row, the X and the arrow appear in both the left and center columns, 
+            but the lightning bolt is only in the left column. Therefore, the right column contains the X 
+            and the arrow, but not the lightning bolt.  <br>
+            <br>
+            To decide what is in the missing cell, look at the two cells in the bottom row. Both contain an 
+            X, so the missing cell should have an X. The arrow only appears in the left column, so it will 
+            not be in the right column. So, the correct response is Option G, because it contains an X, 
+            but not an arrow.  <br>
+            <br>
+            Note the pattern also holds vertically: The bottom row contains all of the shapes that appear 
+            in both the top row and the middle row. <br>
+            <br>
+            <br>
+            Practice Item #5 <br>
+            <img src="..\images\log_prog\matrix question 5.jpg"></img><br>
+            <br>
+            Select the option that best completes the matrix. <br>
+            <img src="..\images\log_prog\matrix question 5 options.jpg"></img><br>
+            <br>
+            Practice Item #5 Explanation <br>
+            <br>
+            In this item, the right column contains the shapes that are unique in the left and center 
+            columns. In other words, the right column contains shapes that appear in either the left 
+            column or the center column, but not the shapes that appear in both the left and center 
+            columns. <br>
+            <br>
+            Look at the top row. The same triangle appears in both the left and center columns, so it 
+            does not appear in the right column. The arrow is only in the left column and the hexagon is 
+            only in the center column. So, the right column contains the arrow and the hexagon. <br>
+            <br>
+            Now look at the middle row. The hexagon appears in both the left and middle columns, so it 
+            does not appear in the right column. The arrow and the trapezoid are unique to the left 
+            column, so they appear in the right column. The middle column does not have any shapes 
+            besides the hexagon, so it does not contribute any additional shapes to the right column. <br>
+            <br>
+            In the bottom row, the triangle appears in both the left and center columns, so it will not 
+            appear in the right column. The hexagon and the trapezoid are unique to the left column, so 
+            they will appear in the right column. The middle column does not contain any other shapes, 
+            so it does not contribute any additional shapes to the right column. <br>
+            <br>
+            Option D is the correct answer, because it contains the trapezoid and the hexagon. Note 
+            that Option H is not correct, because the trapezoid in Option H is not the same as the other 
+            trapezoids (it has bold lines, and the type of line does not change in this item). <br>
+            <br>
+            Note that this pattern also holds vertically: The bottom row contains all of the shapes that 
+            appear in either the top row or the middle row, but not the shapes that appear in both the 
+            top row and the middle row. <br>
+            <br>
+            Do some online research to get additional practice
+          </p>
+        </div>
+        <a class="back_to_categories" href="#top">Back to Categories</a> 
+      </p>
+  </body>
+</html>

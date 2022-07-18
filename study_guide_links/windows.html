@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Windows</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_windows.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <a href="../Resources/page_STUDY_GUIDE.html"
+        ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+      /></a>
+    </div>
+
+    <div class="sections">
+
+      <a class="sec1" href="#section1">Windows Boot Process</a> <br>
+      <a class="sec2" href="#section2">Windows Registry</a> <br> 
+      <a class="sec3" href="#section3">File System</a> <br>
+      <a class="sec4" href="#section4">Windows Log</a> <br>
+      <a class="sec5" href="#section5">Security Identifier</a> <br>
+      <a class="sec6" href="#section6">PowerShell</a> <br>
+      <a class="sec7" href="#section7">Windows Commands</a> <br>
+      <a class="sec8" href="#section8">Miscellaneus</a> <br>
+
+    </div>
+    <div class="main_page">
+    <p>
+      <h2>WINDOWS</h2>
+<!-- begin/end section -->
+      <h3 id="section1">Windows Boot Process</h3>
+
+      <strong>Phase 1 Pre-Boot</strong><br>
+      <ul>
+        <li>
+          In this phase, the PC’s firmware is in charge and initiates a POST and loads the firmware settings.
+          Once all this works (hopefully), the system identifies a valid system disk and reads the MBR.
+          The system then starts the Windows Boot Manager. 
+          This is located here: %SystemDrive%\bootmgr
+        </li>
+      </ul>
+      <br>
+      <strong>Phase 2 Windows Boot Manager</strong><br>
+      <ul>
+        <li>
+          It is the job of the Windows Boot Manager to find and start the Windows loader (Winload.exe).
+          This is located on the Windows boot partition – %SystemRoot%\system32\winload.exe
+        </li>
+      </ul>
+      <br>
+      <strong>Phase 3 Windows OS Loader</strong><br>
+      <ul>
+        <li>
+          In this phase, essential drivers required to start the Windows kernel are loaded and the kernel starts to run.
+          The key file here is %SystemRoot%\system32\ntoskrnl.exe
+        </li>        
+      </ul>
+      <br>
+      <strong>Phase 4 Window NT OS Kernel</strong><br>
+      <ul>
+        <li>
+           The kernel picks up registry settings, additional drivers, etc.,
+           control is taken by system manager process, GUI is loaded. 
+           The kernel loads the system registry hive into memory and loads the drivers that are marked as BOOT_START.
+           Finally, the kernel passes control to the session manager process (Smss.exe).
+          </li>
+      </ul>
+      <br>
+
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+<!-- begin/end section -->
+      <h3 id="section2"> Windows Registry</h3>
+      <strong>HKEY_LOCAL_MACHINE (HKLM)</strong> (master key) <br>
+      <ul>
+        <li>
+          Stores settings specific to the local computer. 
+          Not stored on disk; maintained in memory by the system kernel in order to map all the other subkeys.
+        </li>
+        <li>
+          Contains Four Sub-keys:<br>
+          <ul>
+            <li>SAM – Each SAM database contains all builtin accounts and configured accounts.</li>
+              <ul>
+                <li>
+                Contains usernames, internal unique user identifier in the domain, 
+                a cryptographic hash of each user’s password for each enabled authentication protocol, 
+                location of storage of their user registry hive, status flags, and the list of domains 
+                into which the account was configured.
+                </li>
+              </ul>
+            <li>SECURITY – Linked to the security database of the domain into which the current user is logged on.<li>
+              <ul>
+                <li>Kernel will access it to read and enforce the security policy applicable to the current user and all applications or operations executed by this user.</li>
+              </ul>
+            <li>SYSTEM – Contains information about the Windows System setup.</li>
+            <li>SOFTWARE – Contains software and Windows settings (in the default hardware profile).</li>
+              <ul>
+                <li>Mostly modified by application and system installers. Organized by software vendor, but also contains a Windows subkey for some settings of the Windows user interface.</li>
+              </ul>
+            </ul>          
+        </li>
+      </ul>
+      <br>
+      <strong>HKEY_CLASSES_ROOT (HKCR)</strong><br>
+      <ul>
+        <li>
+          Contains information about registered applications, such as file associations and OLE Object Class IDs. 
+          Compilation of user-based HKCU\Software\Classes and machine-based HKLM\Software\Classes
+        </li>
+      </ul>
+      <br>
+      <strong>HKEY_CURRENT_USER (HKCU)</strong><br>      
+      <ul>
+        <li>
+          Stores settings that are specific to the currently logged-in user. 
+          HKCU is a link to the subkey of HKEY_USERS that corresponds to the user. 
+          On Windows NT systems, each user’s settings are stored in their own files called NTUSER.DAT 
+          and USRCLASS.DAT inside their respective ‘Documents and Settings’ subfolders.
+        </li>
+      </ul>
+      <br>
+      <strong>HKEY_CURRENT_CONFIG (HKCC)</strong><br>
+      <ul>
+        <li>
+          Doesn’t store any information itself, but acts as a pointer, or shortcut, to a registry key that keeps the information about the hardware profile currently being used.
+          HKCC is a shortcut to the HKLM hive, where, in the SYSTEM subkey, the configuration information is actually stored.
+          Mainly exists for convenience. You can make changes in either location to get the same results.
+        </li>
+        <li>Two subkeys:</li>
+          <ul>
+            <li>HKEY_CURRENT_CONFIG\Software</li>
+            <li>HKEY_CURRENT_CONFIG\System</li>
+          </ul>
+      </ul>      
+      <br>
+      <strong>HKEY_USERS (HKU)</strong> (master key) <br>
+      <ul>
+        <li>
+          Contains a SID sub-key for all loaded (logged in) user profiles.
+          These user profile settings are stored in each user’s NTUSER.DAT and USRCLASS.dat files and are loaded at logon.
+          Include sub-keys for each of the LocalSystem, LocalService, and Network Service accounts, as well as .DEFAULT (link to HKU\S-1-5-18) and
+          Loaded into memory; not actually stored on disk. Data is read from the hive files.
+        </li>
+      </ul>
+      <br>
+
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+<!-- begin/end section -->
+      
+
+      <h3 id="section5">Security Identifier (SID)<br></h3>
+      … for Windows domain accounts<br>
+      <ul>
+        <li>
+          Used to uniquely identify a security principal or security group.
+          Each account or group has a unique SID issued by an authority such as a Windows Domain Controller.
+          Stored in a security database; each time a user signs in, the system creates an access token for that user, containing the user’s SID, user rights, and the SIDs for any groups the user belongs to.
+        </li>
+        <li>Breakdown of a SID:</li>
+        <ul>
+          <li>String ID (this one indicates the string is a SID with the ‘S’ value)<br></li>
+          <li>Revision level – version of the SID structure used in a particular SID<br></li>
+          <li>ID authority – Highest level of authority that can issue SIDs for a particular type of security principal. (1 is lowest: Everyone, while 5 is highest: NT Authority (System))<br></li>
+        </ul>
+      </ul>      
+      <br>
+      <img src="../images/sid_components.png"><br>
+      <br>
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+<!-- begin/end section -->
+      <h3 id="section6">PowerShell Commands<br></h3>
+      <ul>
+        <li>Understand basic syntax and relational commands:<br>
+          <ul>
+            <li>Get – To get something. (ex: get-help)<br></li>
+            <li>Start – to run something. (ex: start-job)<br></li>
+            <li>Out – to output something. (ex: out-file)<br></li>          
+            <li>Stop – to stop something that’s running. (ex: stop-process)<br></li>
+            <li>Set – to define something. (ex: set-item)<br></li>
+            <li>New – to create something. (ex: new-smbshare)<br></li>
+          </ul>
+        </li>
+      </ul>
+      <br>      
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+<!-- begin/end section -->
+      <h3 id="section7">Windows Commands<br></h3>
+      (case insensitive)<br>
+      <ul>
+        <li>
+          tasklist – Displays a list of currently running processes on the local computer or a remote computer. (replaces tlist)<br>        
+          <ul>
+            <li>/s &#60computer&#62		-specifies the name/IP address of a remote computer, default is local system<br></li>
+            <li>/u &#60domain&#62\&#60username&#62	- runs command with the account permissions of the user specified<br></li>          
+            <li>/p &#60password&#62	-specifies password of the user account in the /u parameter<br></li>
+            <li>svc 	- lists all the service information for each process without truncation<br></li>
+            <li>/fo {table | list | csv}	-specifies the format to use for the output, default is table<br></li>
+            <li>/fi &#60filter&#62	-specifies types of processes to include in or exclude from the query (examples: ‘STATUS’, ‘IMAGENAME’ or ‘IM’, ‘PID’, ‘SESSION’, etc.)<br></li>
+            <li>/m – lists all tasks with DLL modules loaded that match the given pattern.<br></li>
+            <li>/v – displays verbose task information in output.<br></li>
+          </ul>
+        </li>
+        <br>
+        <li>
+          ipconfig – Display all current TCP/IP network configuration values and refreshes DHCP and DNS settings.<br>
+          <ul>
+            <li>/all		- Displays full TCP/IP configuration for all adapters.<br></li>
+            <li>/release	- Sends a DHCP release message to the server to discard the IP address configuration of the specified interface.<br></li>
+            <li>/renew		- Sends a DHCP message to the server to request a new IP address for the specified interface.<br></li>
+            <li>/flushdns	- Flushes/resets the contents of the DNS client resolver cache.<br></li>
+          </ul>
+        </li>
+        <br>
+        <li>
+          netstat – Displays active TCP connections, ports on which the computer is listening.<br>
+          <ul>
+            <li>See the Linux description. (Operates the same way on Windows.)<br></li>            
+          </ul>        
+        </li>
+        <br>
+        <li>
+          tracert – Determines the path taken to a destination by sending ICMP echo Request to the destination with incrementally increasing TTL field values.<br>
+          <ul>
+            <li>/h	- Specifies the max amount of hops.<br></li>
+          </ul>        
+        </li>
+      </ul>
+      <br>
+      <a class="back_to_categories" href="#top">Back to Categories</a>
+<!-- begin/end section -->
+      <h3 id="section8">Windows Miscellaneous<br></h3>
+      <ul>
+        <li>SysWOW64: subsystem of Windows OS capable of running 32-bit applications on 64-bit Windows<br></li>
+        <li>Dynamic Link Library (DLL): library that contains code and data that can be used by more than one program at the same time<br></li>
+      </ul>
+
+      <h4>Links</h4>
+      <ul>
+        <li>Hard Link - A directory entry that associates a name with a file on a file system. </li>
+          <ul>
+            <li>On Windows, only NTFS implements hard links.</li>
+            <li>On POSIX-compliant systems (including Unix-Like systems), a hard link points to the inode of the file, instead of the file itself; hard link gains all the attributes of the original file and points to the same data block as the original file</li>
+            <li>A pointer to a file’s inode and is the same as the original file. Link count doesn’t increase. (ln file1 file2)</li>
+          </ul>
+          <br>
+          <li>Symbolic Link - Term for any file that contains a reference to another file or directory in the form of an absolute or relative path and that affects pathname resolution. (aka ‘symlink’) </li>
+            <ul>
+              <li>Limited support on Windows OS’s, mainly used as shortcut files.</li>
+              <li>On Unix systems, a symlink may be treated as an alias for the target. Any file management commands may be used on the symbolic link, and commands which read/write file contents will access the target file’s contents. (The rm command will only remove the link, and not the target; the mv command moves or renames the link, not the target.)</li>
+              <li>*Nix directory long listing (ls -l) will denote symbolic links with an arrow after the name, pointing to the name of the target file. In order to see a listing of the linked directory, a ‘/’ must be included in the path. (example: ls -l symlink_1/)</li>
+            </ul>
+            <br>
+            <li>Inode - The metadata for each file and directory is stored in a data structure called an inode. </li>
+            <ul>
+              <li> Contains information processes need to access a file: </li>
+              <ul>
+                <li>File size</li>
+                <li>Ownership (user, group, other)</li>
+                <li>Timestamps</li>
+                <li>Type</li>
+                <li>Access permission (read, write, execute)</li>
+                <li>Number of links</li>
+                <li>Data blocks</li>
+              </ul> 
+            </ul>
+          </ul>
+          <h4>File System</h4>
+          <ul>
+            <li><strong>Universal Naming Convention:</strong><br></li>
+            <ul>
+              <li>\\host-name\share-name\file-path<br></li>
+              <li>Example: \\server-01\share-01\file1.txt<br></li>      
+            </ul>
+            <li>System Registry files in Windows NT: C:\Windows\System32\config\</li>
+            <li>Windows DNS info: C:\WINDOWS\system32\DNS</li>
+          </ul>      
+          <br>
+    <!-- begin/end section -->
+          <h4>Windows Logs</h4>
+          <ul>
+            <li>Windows event logs: C:\WINDOWS\system32\config\</li>            
+            <li>Logged circumstances: C:\Windows\System32\Winevt\Logs\</li>
+            <ul>
+              <li>Event</li>
+              <li>Error</li>
+              <li>Warning</li>
+              <li>Information</li>
+            </ul>
+          </ul>
+          <br>
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+        </p>    
+      </div>
+    </body>
+    </html>
+    

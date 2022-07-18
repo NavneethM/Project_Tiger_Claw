@@ -1,0 +1,89 @@
+
+
+h1 {
+  font-size: 80px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: black;
+}
+h3{
+  text-align: center;
+  margin-top: 0px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: black;
+}
+
+.resources {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.tiger {
+  display: block;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.guide {
+  margin-left: 30px;
+}
+
+.home_info {
+  text-align: center;
+  font-size: larger;
+}
+
+.contact {
+  text-align: center;
+  font-size: larger;
+  margin-bottom: 0px;
+}
+
+.practice_links {
+  text-align:center;
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: auto;
+ }
+
+.link2 {
+  margin-left: 20px;
+}
+
+.link3 {
+  margin-left: 20px;
+}
+
+.link4 {
+  margin-left: 20px;
+}
+
+.link5 {
+  margin-left: 20px;
+}
+
+.left_text{
+ margin-top: 0px;
+ text-align: left; 
+ width: 50%;
+ float:left;
+ font-size:large;
+}
+
+.right_text{
+  text-align: left;
+  margin-left: 55%;
+  margin-top: 0px;
+  width: 45%;
+}

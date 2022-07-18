@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unix</title>
+    
+    <link href="../CSS/general.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/hover_general.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="../CSS/unix.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../CSS/hover_unix.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/headers_tables.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <div>
+        <a href="../Resources/page_STUDY_GUIDE.html"
+          ><img class="back_icon" src="../images/back_icon.jpg" alt=""
+        /></a>
+    </div>
+
+    <div class="sections">
+
+      <a class="sec1" href="#section1">Unix Boot Process</a> <br>
+      <a class="sec2" href="#section2">Unix Logs</a> <br>
+      <a class="sec3" href="#section3">Unix Commands</a> <br>
+      <a class="sec4" href="#section4">Miscellaneous</a> <br>
+
+    </div>
+
+    <div class="main_page"> 
+      <p>
+          <h2>UNIX</h2>
+<!-- begin/end section -->
+          <h3 id="section1">UNIX Boot Process</h3>
+          <h4>Boot Phases</h4>
+          <ul>
+            <li>BIOS - executes MBR<br></li>
+            <li>MBR - executes GRUB<br></li>
+            <li>GRUB - Grand Unified Boot Loader executes Kernel<br></li>
+            <li>Kernel - executes /sbin/init<br></li>
+            <li>Init - executes runlevel programs<br></li>
+            <li>Runlevel - executed from /etc/rc.d/rc*.d<br></li>
+            <li>Runlevel 3 by default<br></li>
+          </ul>
+          
+          <br>
+          <h4>Run Levels</h4>
+          <ul>
+            <li>/etc/inittab – Contains descriptions of the different run states the system can assume<br></li>
+            <li>0 – Halt (turns off the device)<br></li>
+            <li>1 – Single-user mode (terminal; no networking)<br></li>
+            <li>2 – Multi-user mode (no networking)<br></li>
+            <li>3 – Multi-user mode (with networking) (normal system operation without GUI)<br></li>
+            <li>4 – Unused/user-definable<br></li>
+            <li>5 – Full Multi-user mode (normal system operation with networking and GUI, standard runlevel)<br></li>
+            <li>6 – Reboot (reboots the device) <br></li>
+          </ul>
+          <br>
+          <h4>Boot Process Details</h4>
+          <table>
+            <thead>
+
+            </thead>
+            <tbody>
+              <tr>
+                
+              </tr>
+              <tr>
+                <td>
+                  BIOS Phase<br>
+                  (Basic Input/Output System)
+                </td>
+                <td>
+                  <ul>
+                    <li>Performs power on self test (POST), sometimes referred to as system integrity checks </li>>
+                    <li>Searches, loads, and executes boot loader program which is found in the Master Boot Record (MBR)</li>
+                    <li>Once the boot loader is detected and loaded into memory, BIOS gives control to the boot loader</li>
+                    <li>In short, it executes the master boot record (MBR) boot loader</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  MBR<br>
+                  (Master Boot Record)<br>                
+                </td>
+                <td>
+                  <ul>
+                    <li>Located in the 1st sector of the bootable disk.<br></li>
+                    <li>Comprised of three parts: 1) the primary bootloader, 2) partition table, and 3) MBR validity check.<br></li>
+                    <li>Contains information on bootloaders I.E. GNU GRUB, LILO, BURG, and syslinux.<br></li>
+                    <li>MBR is responsible for loading and executing the bootloader (i.e. GRUB)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  GRUB<br>
+                  (Grand Unified Bootloader)<br>
+                </td>
+                <td>
+                  <ul>
+                    <li>Provides boot menu if there are multiple kernel images installed.</li>
+                    <li>Contains the initrd (initial RAM disk) image, which is an initial root file system with a limited set of directories and executables. </li>
+                    <li>Loads and executes Kernel</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Kernel<br></td>
+                <td>
+                  <ul>
+                    <li>Mounts root file system specified by the root= entry in grub.conf file<br></li>
+                    <li>Executes /sbin/init daemon (since it is the first executed program, it has process ID (PID) of 1)<br></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Init<br>                  
+                </td>
+                <td>
+                  <ul>
+                    <li>The init process (daemon) and maintained the system in a specified run-level or state. <br></li>
+                    <li>Init searches the initialization table (/etc/inittab) for the default run-level.<br></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Run-level<br></td>
+                <td>
+                  <ul>
+                    <li>Executed from /etc/rc.d/rc*.d<br></li>
+                    <li>Default is typically level 3<br></li>
+                  </ul>
+                </td>
+              </tr>              
+            </tbody>
+          </table>
+          <br>
+          <!-- end section -->
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+          <!-- begin section -->
+          <h3 id="section2">UNIX Logs</h3>
+          <ul>
+            <li>DNS Resolver File:	/etc/resolv.conf</li>
+            <li>Logs are stored by default in /var/log/</li>
+            <li>/var/log/messages – generic system activity.</li>
+            <li>/var/log/auth.log – authentication related events; anything involving user authentication.</li>
+            <li>/var/log/secure – used in place of /var/log/auth.log in RedHat/CentOS systems.</li>
+            <li>/var/log/boot.log – system initialization script (/etc/init.d/bootmisc.sh) sends all bootup messages here.</li>
+            <li>/var/log/mail.log – mail server related logs.</li>
+            <li>/var/log/faillog – includes information on failed login attempts.</li>
+            <li>/var/log/cron.log – records information on cron jobs.</li>
+            <li>/var/log/kern.log : Kernel logs.</li>
+          </ul>
+          <br>
+          <!-- end section -->
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+          <!-- begin section -->
+          <h3 id="section3">UNIX Commands:</h3>
+          <!-- ls – Lists directory contents<br>
+          -a 	- all<br>
+          -A	- almost all<br>
+          --hide=[pattern] 	- does not list implied entries matching the pattern<br>
+          -i	-inode	(index number)<br>
+          -l	-long listing format (includes permissions, group, owner, size, date, time)<br>
+          -R	-recursive listing<br>
+          -r	-reverse ordered sorting<br>
+          <br>
+          ps – reports a snapshot of current processes<br>
+          -eF 	-standard syntax to see every process<br>
+          aux	-every process in BSD syntax<br>
+          -eLf	-information about threads<br>
+          <br>
+          grep – Searches for patterns in each file specified.<br>
+          -v	- Inverts match (select non-matching lines; essentially omits specified)<br>
+          -e	- Enables regular expression (similar to egrep)<br>
+          -f	- File specifier<br>
+          -i	- Ignore case (case-insensitive)<br>
+          -w	- Word; selects only lines containing matches that form whole words<br>
+          -c	- Suppresses output; only outputs a count of matching lines<br>
+          <br>
+          iptables – administration tool for IPv4 packet filtering and NAT (think: access control; INPUT/FORWARD/OUTPUT | ACCEPT/REJECT/DROP)<br>
+          ~Using this tool, you can set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. <br>
+          Note: if ‘!’ is used, it implies the inverse of the statement. If ‘+’ is used at the end of something, it will match anything that comes before the ‘+’.<br>
+          -A	-‘Append’ <br>
+          -L	- List rules added in verbose format.<br>
+          -F	-‘Flush’ the selected chain (or all if none are specified)<br>
+          -i 	-Specifies the interface<br>
+          -j 	-Jump target; specifies the target of the rule<br>
+          Example of basic syntax:	[sudo(if not root or equiv.]) iptables [option(s)] CHAIN_rule [-j target]<br>
+          Example of usage:		sudo iptables -A INPUT -i lo -j ACCEPT   ->   This would append (-A) a line to the INPUT table saying that anything from the localhost (indicated by -i (interface) lo (localhost)).<br>
+          <br>
+          ifconfig – Used to configure the kernel-resident network interfaces. Used at boot time to set up interfaces as necessary. Afterwards, it’s usually only needed when debugging or system tuning.<br>
+          If no args are given, ifconfig displays status of currently active devices.<br>
+          up/down 	- Flags cause the interface to be activated or shut down.<br>
+          (rest is fairly self-explanatory); deprecated tool, modern systems use ip more often.<br>
+          <br>
+          ip – Show/manipulate routing, devices, poly routing and tunnels.<br>
+          Key flags of note:<br>
+          addr		- Specifies the IP address on a device<br>
+          route		- Routing table entry<br>
+          up/down	- Change state to UP or DOWN.<br>
+          mtu		- Change the MTU of the device. (Maximum Transmission Unit (default 1500))<br>
+          alias		- Gives a device a symbolic name for easy reference.<br>
+          <br>
+          traceroute – Print the route packets trace to network host. (tracks the route taken from an IP network to a given host.)<br>
+          -I	- Use ICMP (that’s a capital ‘i’) ECHO for probe.<br>
+          -T	- Use TCP SYN for probe.<br>
+          -i	- Specify interface through which traceroute should send packets.<br>
+          -m	- Max TTL<br>
+          -n	- Do not map IP addresses to host names.<br>
+          -s 	- Choose an alternative source address. (must be one of the interfaces.)<br>
+          <br>
+          netstat – Prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. <br>
+          -a	- Active connections; prints both listening and non-listening sockets.<br>
+          With the –interfaces option, shows interfaces that are not marked.<br>
+          -v	- Verbose output<br>
+          -n	- Show numerical addresses instead of trying to determine symbolic host/port/user names.<br>
+          -o	- Includes information related to networking timers.<br>
+          -l	- Shows only listening sockets<br>
+          Example of common usages:<br> -->
+
+
+          <ul>
+            <li>ls – Lists directory contents</li>
+            <ul>
+              <li>-a 	- all</li>
+              <li>-A	- almost all</li>
+              <li>--hide=[pattern] 	- does not list implied entries matching the pattern</li>
+              <li>-i	-inode	(index number)</li>
+              <li>-l	-long listing format (includes permissions, group, owner, size, date, time)</li>
+              <li>-R	-recursive listing</li>
+              <li>-r	-reverse ordered sorting</li>
+            </ul>
+            <br>
+            <li>ps – reports a snapshot of current processes</li>
+            <ul>
+              <li>-eF 	-standard syntax to see every process</li>
+              <li>aux	-every process in BSD syntax</li>
+              <li>-eLf	-information about threads</li>
+            </ul>
+            <br>
+            <li>grep – Searches for patterns in each file specified.</li>   
+            <ul>
+              <li>-v	- Inverts match (select non-matching lines; essentially omits specified)</li>
+              <li>-e	- Enables regular expression (similar to egrep)</li>
+              <li>-f	- File specifier</li>
+              <li>-i	- Ignore case (case-insensitive)</li>
+              <li>-w	- Word; selects only lines containing matches that form whole words</li>
+              <li>-c	- Suppresses output; only outputs a count of matching lines</li>
+            </ul>
+            <br>
+            <li>iptables – administration tool for IPv4 packet filtering and NAT (think: access control; INPUT/FORWARD/OUTPUT | ACCEPT/REJECT/DROP)</li> 
+            <ul>
+              <li>~Using this tool, you can set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel.</li>
+              <ul>
+                <li>Note: if ‘!’ is used, it implies the inverse of the statement. If ‘+’ is used at the end of something, it will match anything that comes before the ‘+’.</li>
+              </ul>
+              <li>-A	-‘Append’ </li>
+              <li>-L	- List rules added in verbose format.</li>
+              <li>-F	-‘Flush’ the selected chain (or all if none are specified)</li>
+              <li>-i 	-Specifies the interface</li>
+              <li>-j 	-Jump target; specifies the target of the rule</li>
+              <ul>
+                <li>Example of basic syntax:	[sudo(if not root or equiv.]) iptables [option(s)] CHAIN_rule [-j target]</li>
+                <li>Example of usage:		sudo iptables -A INPUT -i lo -j ACCEPT   ->   This would append (-A) a line to the INPUT table saying that anything from the localhost (indicated by -i (interface) lo (localhost)).</li>
+              </ul>
+            </ul>
+            <br>
+            <li>ifconfig – Used to configure the kernel-resident network interfaces. Used at boot time to set up </li>
+            <ul>
+              <li>If no args are given, ifconfig displays status of currently active devices.</li>
+              <li>up/down 	- Flags cause the interface to be activated or shut down.</li>
+              <li>(rest is fairly self-explanatory); deprecated tool, modern systems use ip more often.</li>
+            </ul>
+            <br>
+            <li>ip – Show/manipulate routing, devices, poly routing and tunnels. <br> Key Flags of note: </li>
+            <ul>
+              <li>addr		- Specifies the IP address on a device</li>
+              <li>route		- Routing table entry</li>
+              <li>up/down	- Change state to UP or DOWN.</li>
+              <li>mtu		- Change the MTU of the device. (Maximum Transmission Unit (default 1500))</li>
+              <li>alias		- Gives a device a symbolic name for easy reference.</li>
+            </ul>
+            <br>
+            <li>traceroute – Print the route packets trace to network host. (tracks the route taken from an IP network to a given host.)</li>
+            <ul>
+              <li>-I	- Use ICMP (that’s a capital ‘i’) ECHO for probe.</li>
+              <li>-T	- Use TCP SYN for probe.</li>
+              <li>-i	- Specify interface through which traceroute should send packets.</li>
+              <li>-m	- Max TTL</li>
+              <li>-n	- Do not map IP addresses to host names.</li>
+              <li>-s 	- Choose an alternative source address. (must be one of the interfaces.)</li>
+            </ul>
+            <br>
+            <li>netstat – Prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. </li>
+            <ul>
+              <li>-a	- Active connections; prints both listening and non-listening sockets.</li>
+              <ul>
+                <li>With the –interfaces option, shows interfaces that are not marked.</li>
+              </ul>
+              <li>-v	- Verbose output</li>
+              <li>-n	- Show numerical addresses instead of trying to determine symbolic host/port/user names.</li>
+              <li>-o	- Includes information related to networking timers.</li>
+              <li>-l	- Shows only listening sockets</li>
+              <li>Example of common usages:</li>
+            </ul>
+          </ul>
+          <p style font-size="small">
+            <em>
+              netstat -ano displays: protocol, rec/send count, local address, foreign address, connection state, and network timers.
+            </em> 
+          </p>
+          <img src="../images/commands_example.png">
+          <br>
+          
+          <br>
+<!-- begin/end section -->
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+          <h3 id="section4">UNIX Miscellaneous</h3>
+          <h4>Shared Object</h4>
+          UNIX equivalent to Windows’ Dynamic Link Library (DLL). File intended to be shared by executable files and further shared object files.<br>
+          <br>
+          <h4>/etc/shadow file</h4>
+          Password hashes for each user that has logged onto the machine<br>
+          <br>
+          <h4>/etc/passwd file</h4>
+          Name: password (stored in /etc/shadow) : user id : group id : commentary<br>
+          Example: 	jsmith:x:1001:1000:Joe Smith, room 1007<br>
+          (the ‘x’ field is where the password hash will show up in /etc/shadow)<br>
+          <br>
+          <h4>.bashrc:</h4>
+          /Users/[user]/.bashrc – File that contains shell commands that is used to change prompts, set environment variables, and define shell procedures.<br>
+          Bash reads and executes commands from ~/.bashrc <br>
+          <br>
+          <h4>crontab</h4>
+          On Unix-like operating systems, the crontab command opens the cron table for editing. The cron table is the list of tasks scheduled to run at regular time intervals on the system.<br>
+          crontab [-u user] file<br>
+          <br>
+<!-- begin/end section -->
+          <a class="back_to_categories" href="#top">Back to Categories</a>
+
+          </p>
+      </div>
+      
+  </body>
+</html>
